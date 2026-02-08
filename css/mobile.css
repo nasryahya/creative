@@ -1,0 +1,328 @@
+﻿/* Mobile-first upgrades */
+.container{ max-width:100%; }
+.site-header,
+.header-inner,
+.nav,
+.nav-menu,
+.hero-content,
+.hero-card,
+.strip-grid,
+.strip-item,
+.cards-grid,
+.card,
+.form-card,
+.map-card,
+.post,
+.footer-inner{
+  max-width:100%;
+}
+
+.hero-title,
+.hero-sub,
+.card-title,
+.card-text,
+.section-title,
+.section-sub{
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+/* Grid Layouts - Mobile First */
+.strip-grid{
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.two-col{ grid-template-columns: 1fr; }
+.cards-grid{
+  grid-template-columns: 1fr;
+  gap: 10px; /* tighter spacing on mobile */
+}
+.coaches-grid{
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.gallery-grid{
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Carousel on mobile - single item */
+.gallery-carousel{
+  width: 100%;
+  border-radius: var(--radius2);
+  min-height: 220px;
+}
+
+.carousel-inner{
+  gap: 0;
+}
+
+.carousel-item{
+  flex: 0 0 100%;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  aspect-ratio: 16 / 9;
+}
+
+.carousel-nav{
+  width: 36px;
+  height: 36px;
+  font-size: 22px;
+}
+
+.carousel-nav-prev{ left: 8px; }
+.carousel-nav-next{ right: 8px; }
+
+/* Keep one item per step on all mobile widths to avoid side-image bleed. */
+
+/* Video in About section on mobile */
+.about-media .video-wrap{
+  width: 100%;
+  border-radius: var(--radius2);
+}
+
+.about-media .ratio{
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+.form-grid{
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.footer-cta{ align-items:flex-start; }
+
+/* Hero Section */
+.hero{ min-height: 52vh; }
+.hero-content{
+  padding: 24px 0 16px;
+}
+.hero-card{
+  padding: 14px;
+  max-width: 100%;
+  display: none; /* hide empty translucent card on mobile */
+}
+.hero-img{
+  transform: none;
+  object-position: center center;
+}
+.scroll-hint{ display:none; }
+.hero-title{
+  letter-spacing: -.3px;
+  margin-bottom: 8px;
+  display: none;
+}
+.hero-sub{
+  font-size: var(--step--1);
+  margin-bottom: 12px;
+  display: none;
+}
+.hero-badges{
+  display: none;
+}
+.hero-cta{
+  display:none;
+  flex-wrap:wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.hero-badges{
+  display: none;
+  flex-wrap:wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Images - Responsive Heights */
+.card-media img{
+  height: auto;
+  aspect-ratio: 16 / 10;
+}
+.g-item img{
+  height: auto;
+  aspect-ratio: 1;
+}
+
+/* Strip Section */
+.strip{
+  padding: 12px 0;
+  margin-top: 12px; /* restore below hero on mobile */
+  position: relative;
+  z-index: 2;
+}
+.strip-item{
+  padding: 12px;
+}
+
+/* Section Spacing */
+.section{
+  padding: 40px 0;
+}
+
+/* About Media Grid */
+.about-media{
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.media-card{
+  min-height: 160px;
+}
+
+/* Buttons and Typography */
+.btn{
+  padding: 10px 12px;
+  font-size: var(--step--2);
+}
+.badge{
+  padding: 8px 10px;
+  font-size: var(--step--2);
+}
+.strip-title{ font-size: var(--step--2); }
+.strip-icon{
+  width: 36px;
+  height: 36px;
+}
+
+/* Brand */
+.brand-sub{ display:none; } /* save space on mobile */
+
+/* Tablet and Larger Mobile Devices (576px and up) */
+@media (min-width: 576px) {
+  .container{
+    padding-inline: 20px;
+  }
+
+  .hero{ min-height: 58vh; }
+  .hero-content{ padding: 32px 0 20px; }
+  .hero-card{ padding: 18px; }
+
+  .strip-item{ padding: 14px; }
+  .strip-icon{
+    width: 40px;
+    height: 40px;
+  }
+
+  .section{ padding: 48px 0; }
+
+  .btn{
+    padding: 11px 14px;
+    font-size: var(--step--1);
+  }
+
+  .card-media img{
+    aspect-ratio: 16 / 11;
+  }
+
+  .cards-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+  }
+}
+
+/* Medium Devices / Small Tablets (768px and up) */
+@media (min-width: 768px) {
+  .container{
+    padding-inline: 24px;
+  }
+
+  .hero{ min-height: 64vh; }
+  .hero-content{ padding: 40px 0 24px; }
+  .hero-card{ padding: 20px; }
+  .hero-title{ font-size: var(--step-3); }
+
+  .strip-item{ padding: 15px; }
+
+  .section{ padding: 56px 0; }
+
+  .cards-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .coaches-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .gallery-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .about-media{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-media img{
+    aspect-ratio: 16 / 9;
+  }
+
+  .g-item img{
+    aspect-ratio: 1.2 / 1;
+  }
+
+  .two-col{
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* Small screens: smaller base font and show hero image fully (no tall crop) */
+@media (max-width: 575.98px) {
+  html{
+    font-size: 14px; /* slightly smaller for mobile so users can zoom to inspect */
+  }
+
+  .hero{
+    min-height: auto;
+    align-items: flex-start;
+    overflow: visible; /* allow image to show fully */
+    overflow-x: hidden;
+    overflow-x: clip;
+    display: flex;
+    flex-direction: column; /* stack image then content vertically */
+    gap: 0;
+  }
+
+  .hero-bg{
+    position: static;
+    width: 100%;
+    order: 0;
+  }
+
+  .hero-img{
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* display full image without cropping */
+    transform: none;
+    display: block;
+  }
+
+  .hero-content{
+    width: 100%;
+    max-width: 100%;
+    order: 1;
+    padding-top: 12px;
+  }
+
+  .container.hero-content{ padding-inline: 12px; }
+
+  /* Keep mobile width safe to avoid horizontal scrolling */
+  .container{ padding-inline: 12px; max-width: 100%; }
+  .section{ padding: 18px 0; }
+  .hero{ width: 100%; margin-left: 0; }
+  .hero-bg{ position: static; width: 100%; }
+  img{ max-width: 100%; display: block; }
+  html, body, main{ overflow-x: hidden; }
+
+  /* Very small phones: stack form fields to one column to avoid cramped inputs */
+  @media (max-width: 360px) {
+    .form-grid{ grid-template-columns: 1fr; }
+  }
+
+  .top-socials{ gap: 4px; }
+  .top-social{
+    width: 32px;
+    height: 32px;
+  }
+  .top-social .ico{ width: 16px; height: 16px; }
+}

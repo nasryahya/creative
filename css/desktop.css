@@ -1,0 +1,12 @@
+/* Desktop refinements */
+.hero{ min-height: 86vh; }
+.hero-card{ padding: 26px; }
+
+.strip{ margin-top: 0; }
+.strip-item{ padding: 16px; }
+
+.section{ padding: 68px 0; }
+.cards-grid .card-media img{ height: 220px; }
+.g-item img{ height: 175px; }
+
+.footer-cta{ align-items:flex-end; }
