@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Default coach avatar 3">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a7db6"/>
+      <stop offset="100%" stop-color="#20547f"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="url(#bg3)"/>
+  <circle cx="100" cy="82" r="33" fill="#f8cfb0"/>
+  <path d="M64 82c2-22 18-36 36-36s34 14 36 36c-10-6-22-10-36-10s-26 4-36 10z" fill="#3b2a20"/>
+  <path d="M40 188c5-32 29-52 60-52s55 20 60 52" fill="#153652"/>
+  <circle cx="88" cy="82" r="3" fill="#1a2531"/>
+  <circle cx="112" cy="82" r="3" fill="#1a2531"/>
+  <path d="M87 97c7 7 19 7 26 0" stroke="#a34f40" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

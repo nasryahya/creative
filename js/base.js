@@ -4,6 +4,20 @@
   const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
 
   const header = $("#header");
+  // set CSS header offset variable dynamically to match actual header height
+  const setHeaderOffset = () => {
+    try {
+      const h = header ? header.offsetHeight : 0;
+      document.documentElement.style.setProperty('--header-offset', h + 'px');
+    } catch (err) { /* ignore */ }
+  };
+  // apply on load and resize (debounced)
+  setHeaderOffset();
+  let __ro_timer = null;
+  window.addEventListener('resize', () => {
+    if (__ro_timer) clearTimeout(__ro_timer);
+    __ro_timer = setTimeout(setHeaderOffset, 120);
+  });
   const nav = $(".nav");
   const navToggle = $("#navToggle");
   const navMenu = $("#navMenu");
@@ -11,6 +25,8 @@
   const langToggle = $("#langToggle");
   const langPill = $("#langPill");
 
+  
+  const isMobile = () => window.matchMedia("(max-width: 991.98px)").matches;
   const lightbox = $("#lightbox");
   const lightboxImage = $("#lightboxImage");
   const lightboxClose = $("#lightboxClose");
@@ -18,20 +34,43 @@
   const year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
+  // Cross-page navigation between main/programs/girls-only should replace history entry.
+  const wireReplaceNavigation = () => {
+    $$("a[href]").forEach((a) => {
+      const raw = a.getAttribute("href") || "";
+      if (!raw || raw.startsWith("#")) return;
+      if (!/(^|\/)(index|programs|girls-only)\.html(#.*)?$/i.test(raw)) return;
+      if (a.target && a.target.toLowerCase() === "_blank") return;
+
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const urlObj = new URL(raw, window.location.href);
+        const currentLang = document.documentElement.lang === "ar" ? "ar" : "en";
+        urlObj.searchParams.set("lang", currentLang);
+        const url = urlObj.toString();
+        window.location.replace(url);
+      });
+    });
+  };
+  wireReplaceNavigation();
+
   // ------- i18n -------
   const translations = {
     en: {
       "nav.about":"About",
+      "nav.girlsPage":"Girls Only",
       "nav.programs":"Programs",
       "nav.coaches":"Coaches",
       "nav.gallery":"Gallery",
       "nav.media":"Media",
       "nav.contact":"Contact",
+      "nav.home":"Home",
+      "nav.backToMain":"Main page",
       "header.cta":"Register",
 
       "hero.eyebrow":"Qatar • Doha • Al Sadd",
-      "hero.title":"Where creativity begins… and champions are made.",
-      "hero.sub":"Professional football and basketball training for children, in a safe and motivating environment.",
+      "hero.title":"Where creativity begins\nChampions are made",
+      "hero.sub":"Professional football & basketball training for children in a safe environment.",
       "hero.primary":"Register now",
       "hero.whatsapp":"WhatsApp",
       "hero.badge1":"From 4 years+",
@@ -47,21 +86,88 @@
 
       "about.title":"About the Academy",
       "about.lead":"We believe every child has a unique talent — our role is to discover it and develop it with knowledge, discipline, and enjoyment.",
-      "about.f1t":"Building confidence",
-      "about.f1s":"Because confidence starts early.",
-      "about.f2t":"Teamwork & discipline",
-      "about.f2s":"We develop values before performance.",
-      "about.f3t":"Girls-only training",
-      "about.f3s":"Full privacy with qualified female coaches.",
+      "about.m1t":"Players Trained",
+      "about.m1s":"Professionally trained with modern methods.",
+      "about.m2t":"Years of Experience",
+      "about.m2s":"Structured coaching built on proven development plans.",
+      "about.m3chip":"Girls Only",
+      "about.m3t":"Specialized Training for Girls",
+      "about.m3s":"Private sessions led by qualified female coaches.",
       "about.cta1":"Explore programs",
       "about.cta2":"Privacy policy",
+      "about.story":"At Creativity Sports Academy in Al Sadd, football and basketball training are a core path to build confidence, discipline, and strong character from an early age.",
+      "about.p1":"We celebrate effort before results, reward commitment, and help every child take confident steps toward a stronger athletic future.",
+      "about.p2":"Every session combines professional coaching, safety, motivation, and enjoyment to create future leaders on and off the field.",
 
       "programs.title":"Programs",
       "programs.sub":"Specialized football & basketball training for children — starting from 4 years old.",
+      "programs.overview.sub":"Quick look at our football and basketball programs. Full details are available on a dedicated page.",
+      "programs.overview.football.text":"A structured path for skills, movement, teamwork, and confidence building.",
+      "programs.overview.basketball.text":"Focused sessions to build technical skills, discipline, and game awareness.",
+      "programs.side.title":"Why parents choose our academy",
+      "programs.side.sub":"We combine safety, discipline, and motivation in every session to help children grow with confidence.",
+      "programs.side.l1":"Professional coaching for children.",
+      "programs.side.l2":"Girls-only sessions with full privacy.",
+      "programs.side.l3":"Focus on character before competition.",
+      "programs.side.cta":"Start registration",
+      "programs.detailsLink":"View full details",
+      "programs.detailsCta":"Open detailed programs page",
+      "concerns.title":"Is your child struggling with confidence or focus?",
+      "concerns.sub":"Many parents in Doha tell us the same thing: their child is shy, distracted, or spends too much time on screens. Our training turns that into discipline, confidence, and healthy habits.",
+      "concerns.painTitle":"What parents notice",
+      "concerns.pain1":"Shy or quiet in social situations?",
+      "concerns.pain2":"Low confidence and avoids challenges?",
+      "concerns.pain3":"Too much screen time and low activity?",
+      "concerns.pain4":"Needs structure and discipline?",
+      "concerns.solutionTitle":"What your child gains",
+      "concerns.solution1":"Confidence & communication",
+      "concerns.solution2":"Discipline & focus",
+      "concerns.solution3":"Teamwork & respect",
+      "concerns.solution4":"Fitness & healthy routine",
+      "concerns.cta":"Start Registration",
+      "concerns.ctaAlt":"Book Free Trial",
+      "journey.title":"Your child’s progress journey",
+      "journey.sub":"We don’t just train — we build habits and skills step by step, with age-based groups and clear milestones.",
+      "journey.m1month":"Month 1 — Foundation",
+      "journey.m1text":"Basic coordination, rules, and confidence in movement.",
+      "journey.m3month":"Month 3 — Team Interaction",
+      "journey.m3text":"Communication, teamwork, and discipline in sessions.",
+      "journey.m6month":"Month 6 — Skill Growth",
+      "journey.m6text":"Stronger technique, game awareness, and consistency.",
+      "journey.m9month":"Month 9 — Match Readiness",
+      "journey.m9text":"Better decisions, leadership, and competitive mindset.",
+      "journey.cta":"Start Registration",
+      "journey.ctaAlt":"Book Assessment",
+      "response.title":"Response Time Guarantee",
+      "response.text":"We reply fast on WhatsApp — usually within 2 hours (during working hours).",
+      "programs.page.title":"Detailed Programs",
+      "programs.page.sub":"Explore our full football and basketball pathways, training focus, and development goals for children.",
       "programs.football.title":"Football Training",
       "programs.football.text":"Professional football training for children — skills, discipline, and teamwork through modern, safe methods.",
+      "programs.football.d1":"Ball control, passing, dribbling, and finishing fundamentals.",
+      "programs.football.d2":"Decision-making drills and small-sided games for game intelligence.",
+      "programs.football.d3":"Physical conditioning suitable for each age group.",
+      "programs.football.skills.title":"Key football skills",
+      "programs.football.skills.1":"Accurate passing and first touch under pressure.",
+      "programs.football.skills.2":"1v1 attacking and defending basics.",
+      "programs.football.skills.3":"Game positioning and movement without the ball.",
+      "programs.football.gains.title":"What your child gains",
+      "programs.football.gains.1":"Higher confidence and positive self-expression.",
+      "programs.football.gains.2":"Discipline, focus, and responsibility habits.",
+      "programs.football.gains.3":"Stronger teamwork and communication.",
       "programs.basketball.title":"Basketball Training",
       "programs.basketball.text":"Specialized basketball programs for children — skill building, confidence, and leadership in a supportive environment.",
+      "programs.basketball.d1":"Dribbling, passing, shooting mechanics, and defensive movement.",
+      "programs.basketball.d2":"Coordination and footwork through structured skill stations.",
+      "programs.basketball.d3":"Team concepts, communication, and positive competitiveness.",
+      "programs.basketball.skills.title":"Key basketball skills",
+      "programs.basketball.skills.1":"Ball handling with both hands and control in motion.",
+      "programs.basketball.skills.2":"Correct shooting form and finishing around the basket.",
+      "programs.basketball.skills.3":"Defensive stance, footwork, and quick reaction.",
+      "programs.basketball.gains.title":"What your child gains",
+      "programs.basketball.gains.1":"Better coordination and body balance.",
+      "programs.basketball.gains.2":"Patience, consistency, and performance mindset.",
+      "programs.basketball.gains.3":"Leadership, respect, and team commitment.",
       "programs.values.title":"Values & Development",
       "programs.values.text":"We focus on building character first — respect, responsibility, and confidence — to create future leaders.",
       "programs.b1":"Physical development",
@@ -78,20 +184,22 @@
 
       "coaches.title":"Coaches",
       "coaches.sub":"Placeholder profiles will be replaced with your official coaches once you provide names and details.",
-      "coaches.c1n":"Coach A",
+      "coaches.c1n":"Coach Adam",
       "coaches.c1r":"Football • Kids development",
-      "coaches.c2n":"Coach B",
+      "coaches.c2n":"Coach Brian",
       "coaches.c2r":"Basketball • Skills training",
-      "coaches.c3n":"Coach G",
+      "coaches.c3n":"Coach Grace",
       "coaches.c3r":"Girls sessions • Female coach",
-      "coaches.c4n":"Coach F",
+      "coaches.c4n":"Coach Faris",
       "coaches.c4r":"Fitness • Coordination",
 
       "gallery.title":"Gallery",
       "gallery.sub":"A glimpse into our training environment and activities.",
 
+      "register.badge":"Book a Free Trial",
       "register.title":"Register",
-      "register.sub":"Fill in the form and we will contact you. Your details will be sent to our email and you can also send a copy via WhatsApp.",
+      "register.sub":"Quick booking form for football and basketball training.",
+      "register.promise":"We reply fast on WhatsApp — usually within 2 hours (during working hours).",
 
       "form.name":"Child name",
       "form.age":"Age",
@@ -104,13 +212,17 @@
       "form.girl":"Girl",
       "form.football":"Football",
       "form.basketball":"Basketball",
-      "form.req":"Required",
-      "form.submit":"Submit",
+      "form.requiredNote":"Fields marked with * are required.",
+      "form.sendWhatsApp":"Send via WhatsApp",
+      "form.sendEmail":"Send via Email",
+      "form.submit":"Send via Email",
       "form.whatsappCopy":"Send copy via WhatsApp",
+      "form.trust":"No spam — we only use your number to contact you about training.",
       "form.privacyNote":"By submitting, you agree to our",
       "form.privacyLink":"Privacy Policy",
+      "form.openingWhatsApp":"Opening WhatsApp...",
       "form.sending":"Sending…",
-      "form.sent":"Submitted. You can now send a copy via WhatsApp.",
+      "form.sent":"Sent via email successfully.",
       "form.invalid":"Please complete all required fields.",
 
       "contact.title":"Contact",
@@ -125,6 +237,25 @@
       "cta.location":"Doha - Al Sadd",
       "cta.whatsapp":"WhatsApp: +974 50149045",
       "cta.email":"Email: nasryahia474@gmail.com",
+      "ready.kicker":"Ready to Start?",
+      "ready.title":"Join the academy and build skill, confidence, and discipline.",
+      "ready.btn":"Book Now",
+      "footer.desc":"Professional football and basketball training for children in Doha.",
+      "footer.quick.title":"Quick Links",
+      "footer.quick.home":"Home",
+      "footer.quick.about":"About",
+      "footer.quick.programs":"Programs",
+      "footer.quick.girls":"Girls Only",
+      "footer.quick.register":"Register",
+      "footer.contact.title":"Contact",
+      "footer.contact.location":"Doha - Al Sadd",
+      "footer.contact.whatsapp":"WhatsApp: +974 50149045",
+      "footer.contact.email":"Email: nasryahia474@gmail.com",
+      "footer.hours.title":"Training Hours",
+      "footer.hours.weekdays":"Sun - Thu: 4:00 PM - 9:00 PM",
+      "footer.hours.friday":"Friday: 3:00 PM - 8:00 PM",
+      "footer.hours.saturday":"Saturday: 9:00 AM - 1:00 PM",
+      "footer.rights":"© 2026 Creativity Sports Academy - All rights reserved.",
 
       "footer.sub":"Al Sadd • Doha • Qatar",
       "footer.privacy":"Privacy",
@@ -133,15 +264,18 @@
 
     ar: {
       "nav.about":"من نحن",
+      "nav.girlsPage":"قسم البنات",
       "nav.programs":"البرامج",
       "nav.coaches":"المدربين",
       "nav.gallery":"المعرض",
       "nav.media":"ميديا",
       "nav.contact":"تواصل",
+      "nav.home":"الرئيسية",
+      "nav.backToMain":"العودة للرئيسية",
       "header.cta":"سجّل الآن",
 
       "hero.eyebrow":"قطر • الدوحة • السد",
-      "hero.title":"حيث يبدأ الإبداع… ويُصنع الأبطال",
+      "hero.title":"هنا يبدأ الإبداع\nويُصنع الأبطال",
       "hero.sub":"تدريب احترافي لكرة القدم وكرة السلة للأطفال في بيئة آمنة ومحفّزة.",
       "hero.primary":"سجّل الآن",
       "hero.whatsapp":"واتساب",
@@ -158,21 +292,88 @@
 
       "about.title":"عن الأكاديمية",
       "about.lead":"نؤمن أن كل طفل يمتلك موهبة فريدة، ودورنا هو اكتشافها وصقلها بالعلم، الانضباط، والمتعة.",
-      "about.f1t":"بناء الثقة",
-      "about.f1s":"الثقة تُبنى منذ الصغر.",
-      "about.f2t":"روح الفريق والانضباط",
-      "about.f2s":"نبني القيم قبل المنافسة.",
-      "about.f3t":"تدريب للبنات فقط",
-      "about.f3s":"خصوصية تامة مع مدربات محترفات.",
+      "about.m1t":"لاعب تم تدريبه",
+      "about.m1s":"تدريب احترافي بأساليب حديثة وتطوير مستمر.",
+      "about.m2t":"سنوات خبرة",
+      "about.m2s":"منهج تدريبي منظم قائم على خبرة عملية طويلة.",
+      "about.m3chip":"Girls Only",
+      "about.m3t":"تدريب مخصص للفتيات",
+      "about.m3s":"جلسات خاصة بإشراف مدربات محترفات وبخصوصية كاملة.",
       "about.cta1":"استكشف البرامج",
       "about.cta2":"سياسة الخصوصية",
+      "about.story":"في أكاديمية الإبداع الرياضي بالسد، يشكّل تدريب كرة القدم وكرة السلة مساراً أساسياً لبناء الثقة والانضباط وصناعة شخصية قوية منذ الصغر.",
+      "about.p1":"نحتفل بالجهد قبل النتيجة، ونكرّم الالتزام، ونساعد كل طفل على التقدم بثبات نحو مستقبل رياضي أقوى.",
+      "about.p2":"كل حصة تجمع بين التدريب الاحترافي، الأمان، التحفيز، والمتعة لصناعة قادة المستقبل داخل الملعب وخارجه.",
 
       "programs.title":"البرامج",
       "programs.sub":"برامج متخصصة لكرة القدم وكرة السلة للأطفال — ابتداءً من عمر 4 سنوات.",
+      "programs.overview.sub":"لمحة سريعة عن برامج كرة القدم وكرة السلة. التفاصيل الكاملة متاحة في صفحة مستقلة.",
+      "programs.overview.football.text":"مسار تدريبي منظم لتطوير المهارات والحركة وروح الفريق والثقة.",
+      "programs.overview.basketball.text":"حصص مركزة لبناء المهارات الفنية والانضباط وفهم اللعب.",
+      "programs.side.title":"لماذا يختار الأهالي أكاديميتنا",
+      "programs.side.sub":"نجمع بين الأمان، الانضباط، والتحفيز في كل حصة لمساعدة الأطفال على النمو بثقة.",
+      "programs.side.l1":"تدريب احترافي مخصص للأطفال.",
+      "programs.side.l2":"جلسات للبنات فقط مع خصوصية كاملة.",
+      "programs.side.l3":"تركيز على بناء الشخصية قبل المنافسة.",
+      "programs.side.cta":"ابدأ التسجيل",
+      "programs.detailsLink":"عرض التفاصيل الكاملة",
+      "programs.detailsCta":"فتح صفحة البرامج التفصيلية",
+      "concerns.title":"هل طفلك يحتاج دعماً في الثقة أو التركيز؟",
+      "concerns.sub":"كثير من الأهالي في الدوحة يشاركوننا نفس الملاحظات: الطفل خجول، مشتت، أو يقضي وقتاً طويلاً أمام الشاشات. تدريبنا يحوّل ذلك إلى انضباط وثقة وعادات صحية.",
+      "concerns.painTitle":"ماذا يلاحظ الأهالي",
+      "concerns.pain1":"خجول أو هادئ في المواقف الاجتماعية؟",
+      "concerns.pain2":"ثقة منخفضة ويتجنب التحديات؟",
+      "concerns.pain3":"وقت شاشات كثير ونشاط بدني أقل؟",
+      "concerns.pain4":"يحتاج إلى تنظيم وانضباط؟",
+      "concerns.solutionTitle":"ماذا يكتسب طفلك",
+      "concerns.solution1":"ثقة وتواصل أفضل",
+      "concerns.solution2":"انضباط وتركيز",
+      "concerns.solution3":"عمل جماعي واحترام",
+      "concerns.solution4":"لياقة وعادات صحية",
+      "concerns.cta":"ابدأ التسجيل",
+      "concerns.ctaAlt":"احجز تجربة مجانية",
+      "journey.title":"رحلة تطور طفلك",
+      "journey.sub":"لا نقدّم حصصاً فقط، بل نبني عادات ومهارات خطوة بخطوة ضمن مجموعات عمرية واضحة ومراحل تطوير محددة.",
+      "journey.m1month":"الشهر 1 — التأسيس",
+      "journey.m1text":"تناسق حركي أساسي، قواعد التدريب، وثقة أولية في الحركة.",
+      "journey.m3month":"الشهر 3 — التفاعل الجماعي",
+      "journey.m3text":"تواصل أفضل، عمل جماعي، وانضباط داخل الحصص.",
+      "journey.m6month":"الشهر 6 — نمو المهارة",
+      "journey.m6text":"تكنيك أقوى، فهم أفضل للعب، واستمرارية في الأداء.",
+      "journey.m9month":"الشهر 9 — جاهزية المباريات",
+      "journey.m9text":"قرارات أفضل، قيادة أكبر، وعقلية تنافسية متزنة.",
+      "journey.cta":"ابدأ التسجيل",
+      "journey.ctaAlt":"احجز تقييم",
+      "response.title":"ضمان سرعة الرد",
+      "response.text":"نرد بسرعة على واتساب، غالباً خلال ساعتين (خلال أوقات العمل).",
+      "programs.page.title":"البرامج التفصيلية",
+      "programs.page.sub":"تعرّف على تفاصيل برامج كرة القدم وكرة السلة وأهداف التطوير لكل فئة عمرية.",
       "programs.football.title":"تدريب كرة القدم",
       "programs.football.text":"تدريب احترافي للأطفال لتطوير المهارات والانضباط وروح الفريق بأسلوب حديث وآمن.",
+      "programs.football.d1":"أساسيات التحكم بالكرة والتمرير والمراوغة وإنهاء الهجمات.",
+      "programs.football.d2":"تدريبات اتخاذ القرار وألعاب مصغرة لرفع ذكاء اللعب.",
+      "programs.football.d3":"إعداد بدني مناسب لكل مرحلة عمرية.",
+      "programs.football.skills.title":"مهارات كرة القدم الأساسية",
+      "programs.football.skills.1":"دقة التمرير والاستلام الأول تحت الضغط.",
+      "programs.football.skills.2":"أساسيات المواجهات الفردية 1 ضد 1 هجومًا ودفاعًا.",
+      "programs.football.skills.3":"التمركز الصحيح والتحرك بدون كرة.",
+      "programs.football.gains.title":"ماذا سيكتسب طفلك",
+      "programs.football.gains.1":"ثقة أعلى بالنفس وقدرة أفضل على التعبير الإيجابي.",
+      "programs.football.gains.2":"عادات الانضباط والتركيز وتحمل المسؤولية.",
+      "programs.football.gains.3":"روح فريق أقوى وتواصل أفضل مع الآخرين.",
       "programs.basketball.title":"تدريب كرة السلة",
       "programs.basketball.text":"برامج متخصصة للأطفال لبناء المهارات والثقة والقيادة في بيئة داعمة.",
+      "programs.basketball.d1":"المراوغة والتمرير والتصويب والتحرك الدفاعي بشكل صحيح.",
+      "programs.basketball.d2":"تطوير التناسق والعمل الحركي عبر محطات تدريبية منظمة.",
+      "programs.basketball.d3":"بناء مفاهيم اللعب الجماعي والتواصل وروح المنافسة الإيجابية.",
+      "programs.basketball.skills.title":"مهارات كرة السلة الأساسية",
+      "programs.basketball.skills.1":"التحكم بالكرة بكلتا اليدين أثناء الحركة.",
+      "programs.basketball.skills.2":"أساسيات التصويب الصحيح وإنهاء الهجمة قرب السلة.",
+      "programs.basketball.skills.3":"وضعية الدفاع الصحيحة وحركة القدمين وسرعة الاستجابة.",
+      "programs.basketball.gains.title":"ماذا سيكتسب طفلك",
+      "programs.basketball.gains.1":"تناسق حركي أفضل وتوازن بدني أعلى.",
+      "programs.basketball.gains.2":"الصبر والاستمرارية وعقلية الأداء المنضبط.",
+      "programs.basketball.gains.3":"القيادة والاحترام والالتزام داخل الفريق.",
       "programs.values.title":"القيم والتطوير",
       "programs.values.text":"نركّز على بناء الشخصية أولاً — الاحترام والمسؤولية والثقة — لصناعة قادة المستقبل.",
       "programs.b1":"تطوير المهارات البدنية",
@@ -189,20 +390,22 @@
 
       "coaches.title":"المدربين",
       "coaches.sub":"هذه أسماء افتراضية مؤقتاً وسيتم تحديثها عند تزويدنا بمعلومات المدربين الرسمية.",
-      "coaches.c1n":"المدرب A",
+      "coaches.c1n":"المدرب آدم",
       "coaches.c1r":"كرة قدم • تطوير الأطفال",
-      "coaches.c2n":"المدرب B",
+      "coaches.c2n":"المدرب براين",
       "coaches.c2r":"كرة سلة • تطوير المهارات",
-      "coaches.c3n":"المدربة G",
+      "coaches.c3n":"المدربة غريس",
       "coaches.c3r":"جلسات البنات • مدربة محترفة",
-      "coaches.c4n":"المدرب F",
+      "coaches.c4n":"المدرب فارس",
       "coaches.c4r":"لياقة • تناسق وحركة",
 
       "gallery.title":"المعرض",
       "gallery.sub":"لمحة عن بيئة التدريب والأنشطة.",
 
+      "register.badge":"احجز حصة تجريبية مجانية",
       "register.title":"التسجيل",
-      "register.sub":"املأ النموذج وسنتواصل معك. ستصل البيانات إلى بريدنا ويمكنك إرسال نسخة عبر واتساب.",
+      "register.sub":"نموذج حجز سريع لتدريب كرة القدم وكرة السلة.",
+      "register.promise":"نرد بسرعة على واتساب، غالباً خلال ساعتين (خلال أوقات العمل).",
 
       "form.name":"اسم الطفل",
       "form.age":"العمر",
@@ -215,13 +418,17 @@
       "form.girl":"بنت",
       "form.football":"كرة قدم",
       "form.basketball":"كرة سلة",
-      "form.req":"مطلوب",
-      "form.submit":"إرسال",
+      "form.requiredNote":"الحقول المعلّمة بـ * مطلوبة.",
+      "form.sendWhatsApp":"إرسال عبر واتساب",
+      "form.sendEmail":"إرسال عبر الإيميل",
+      "form.submit":"إرسال عبر الإيميل",
       "form.whatsappCopy":"إرسال نسخة عبر واتساب",
+      "form.trust":"بدون إزعاج — نستخدم رقمك فقط للتواصل معك بخصوص التدريب.",
       "form.privacyNote":"بالإرسال أنت توافق على",
       "form.privacyLink":"سياسة الخصوصية",
+      "form.openingWhatsApp":"جاري فتح واتساب...",
       "form.sending":"جارٍ الإرسال…",
-      "form.sent":"تم الإرسال. يمكنك الآن إرسال نسخة عبر واتساب.",
+      "form.sent":"تم الإرسال عبر الإيميل بنجاح.",
       "form.invalid":"يرجى تعبئة جميع الحقول المطلوبة.",
 
       "contact.title":"تواصل معنا",
@@ -236,6 +443,25 @@
       "cta.location":"الدوحة - السد",
       "cta.whatsapp":"واتساب: +974 50149045",
       "cta.email":"البريد: nasryahia474@gmail.com",
+      "ready.kicker":"جاهز للانطلاق؟",
+      "ready.title":"انضم للأكاديمية وابنِ المهارة والثقة والانضباط.",
+      "ready.btn":"احجز الآن",
+      "footer.desc":"تدريب احترافي لكرة القدم وكرة السلة للأطفال في الدوحة.",
+      "footer.quick.title":"روابط سريعة",
+      "footer.quick.home":"الرئيسية",
+      "footer.quick.about":"عن الأكاديمية",
+      "footer.quick.programs":"البرامج",
+      "footer.quick.girls":"قسم البنات",
+      "footer.quick.register":"التسجيل",
+      "footer.contact.title":"تواصل",
+      "footer.contact.location":"الدوحة - السد",
+      "footer.contact.whatsapp":"واتساب: +974 50149045",
+      "footer.contact.email":"البريد: nasryahia474@gmail.com",
+      "footer.hours.title":"أوقات التدريب",
+      "footer.hours.weekdays":"الأحد - الخميس: 4:00 م - 9:00 م",
+      "footer.hours.friday":"الجمعة: 3:00 م - 8:00 م",
+      "footer.hours.saturday":"السبت: 9:00 ص - 1:00 م",
+      "footer.rights":"© 2026 Creativity Sports Academy - جميع الحقوق محفوظة.",
 
       "footer.sub":"السد • الدوحة • قطر",
       "footer.privacy":"الخصوصية",
@@ -269,6 +495,11 @@
 
   const initialLang = (() => {
     try {
+      const qs = new URLSearchParams(window.location.search);
+      const qLang = qs.get("lang");
+      if (qLang === "ar" || qLang === "en") return qLang;
+    } catch {}
+    try {
       const saved = localStorage.getItem("lang");
       if (saved === "ar" || saved === "en") return saved;
     } catch {}
@@ -283,16 +514,36 @@
     });
   }
 
+  // ------- Header scroll state (glass -> solid) -------
+  const setHeaderScrolled = () => {
+    if (!header) return;
+    header.classList.toggle("is-scrolled", window.scrollY > 10);
+  };
+  setHeaderScrolled();
+  window.addEventListener("scroll", setHeaderScrolled, { passive: true });
+
   // ------- Mobile menu -------
   const setMenuOpen = (open) => {
     if (navToggle) navToggle.setAttribute("aria-expanded", String(open));
     if (nav) nav.classList.toggle("is-open", open);
     if (navMenu) navMenu.classList.toggle("open", open);
+    // Visual open state only (no scroll lock in CSS).
     document.body.classList.toggle("menu-open", open);
+    document.documentElement.classList.toggle("menu-open", open);
     if (navBackdrop) navBackdrop.classList.toggle("active", open);
   };
+  // Ensure no stale overlay/lock state survives refresh or route changes.
+  setMenuOpen(false);
+  window.addEventListener("pageshow", () => setMenuOpen(false));
   if (navToggle) {
-    navToggle.addEventListener("click", () => {
+    navToggle.addEventListener("click", (e) => {
+      if (isMobile()) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = "menu.html";
+        return;
+      }
+      e.stopPropagation();
       const open = navToggle.getAttribute("aria-expanded") === "true";
       setMenuOpen(!open);
     });
@@ -313,8 +564,19 @@
     } catch (err) { /* ignore */ }
   });
   if (navMenu) {
-    $$(".nav-link", navMenu).forEach(a => a.addEventListener("click", () => setMenuOpen(false)));
+    navMenu.addEventListener("click", (e) => e.stopPropagation());
+    // Close menu on any in-menu link (not only .nav-link) to avoid stuck body scroll lock.
+    $$("a[href]", navMenu).forEach((a) => {
+      a.addEventListener("click", () => setMenuOpen(false));
+    });
   }
+
+  // Safety: if hash navigation or desktop resize occurs, ensure menu lock is cleared.
+  window.addEventListener("hashchange", () => setMenuOpen(false));
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 901px)").matches) setMenuOpen(false);
+  });
+  // No global scroll lock: keep touch scrolling native.
 
   // ------- Scroll reveal -------
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -347,6 +609,53 @@
     $$(".reveal").forEach(el => el.classList.add("is-visible"));
   }
 
+  // ------- About counters -------
+  const counterNodes = $$(".count-up");
+  const runCounter = (el) => {
+    if (!el || el.dataset.counted === "true") return;
+    const to = Number(el.getAttribute("data-count-to") || "0");
+    const duration = Number(el.getAttribute("data-count-duration") || "1400");
+    if (!Number.isFinite(to) || to <= 0) return;
+
+    const locale = document.documentElement.lang === "ar" ? "ar" : "en-US";
+    const startAt = performance.now();
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+    const tick = (now) => {
+      const progress = Math.min(1, (now - startAt) / duration);
+      const value = Math.round(to * easeOut(progress));
+      el.textContent = value.toLocaleString(locale);
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = to.toLocaleString(locale);
+        el.dataset.counted = "true";
+      }
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (counterNodes.length) {
+    if (prefersReduced || !("IntersectionObserver" in window)) {
+      counterNodes.forEach((el) => {
+        const to = Number(el.getAttribute("data-count-to") || "0");
+        const locale = document.documentElement.lang === "ar" ? "ar" : "en-US";
+        el.textContent = Number.isFinite(to) ? to.toLocaleString(locale) : "0";
+        el.dataset.counted = "true";
+      });
+    } else {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runCounter(entry.target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.35 });
+      counterNodes.forEach((el) => counterObserver.observe(el));
+    }
+  }
+
   // On-load reveal (first section without waiting for scroll)
   window.addEventListener("load", () => {
     const onLoadItems = $$(".reveal.on-load");
@@ -356,13 +665,18 @@
   });
 
   // ------- Active nav on scroll -------
-  const sections = ["about","programs","coaches","gallery","media","contact","register"]
+  const sections = ["about","programs","football-program","basketball-program","coaches","gallery","media","contact","register"]
     .map(id => document.getElementById(id))
     .filter(Boolean);
 
   const navLinks = $$(".nav-link");
   const setActive = (id) => {
-    navLinks.forEach(l => l.classList.toggle("active", l.getAttribute("data-nav") === id));
+    navLinks.forEach((l) => {
+      const isActive = l.getAttribute("data-nav") === id;
+      l.classList.toggle("active", isActive);
+      if (isActive) l.setAttribute("aria-current", "page");
+      else l.removeAttribute("aria-current");
+    });
   };
 
   if (sections.length) {
@@ -375,7 +689,6 @@
 
     sections.forEach(s => sio.observe(s));
   }
-
   // ------- Lightbox -------
   const openLightbox = (src) => {
     if (!lightbox || !lightboxImage) return;
@@ -404,7 +717,10 @@
       const src = ifr.getAttribute("data-src");
       if (src && !ifr.src) ifr.src = src;
     };
-    if (!prefersReduced && "IntersectionObserver" in window) {
+    const isPhoneView = window.matchMedia("(max-width: 991.98px)").matches;
+    if (isPhoneView) {
+      lazyIframes.forEach(loadIframe);
+    } else if (!prefersReduced && "IntersectionObserver" in window) {
       const iio = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
@@ -422,8 +738,8 @@
   // ------- Form: validate + build WhatsApp copy -------
   const form = $("#registerForm");
   const status = $("#formStatus");
-  const waBtn = $("#waCopyBtn");
-  const submitBtn = $("#submitBtn");
+  const waBtn = $("#waSendBtn");
+  const submitBtn = $("#emailSubmitBtn");
 
   const academyPhone = "97450149045";
 
@@ -466,6 +782,21 @@
   };
 
   if (form) {
+    if (waBtn) {
+      waBtn.addEventListener("click", (e) => {
+        const lang = document.documentElement.lang || "en";
+        const d = getFormData();
+        if (!validate(d)) {
+          e.preventDefault();
+          if (status) status.textContent = translations[lang]["form.invalid"];
+          return;
+        }
+        const text = encodeURIComponent(buildWhatsAppText(d, lang));
+        waBtn.href = `https://wa.me/${academyPhone}?text=${text}`;
+        if (status) status.textContent = translations[lang]["form.openingWhatsApp"];
+      });
+    }
+
     form.addEventListener("submit", (e) => {
       const lang = document.documentElement.lang || "en";
       const d = getFormData();
@@ -479,14 +810,6 @@
       // Keep default submit (to hidden iframe), but show instant UI feedback
       if (status) status.textContent = translations[lang]["form.sending"];
       if (submitBtn) submitBtn.disabled = true;
-
-      // Prepare WhatsApp copy button
-      const text = encodeURIComponent(buildWhatsAppText(d, lang));
-      const waUrl = `https://wa.me/${academyPhone}?text=${text}`;
-      if (waBtn) {
-        waBtn.href = waUrl;
-        waBtn.classList.remove("hidden");
-      }
 
       // Success message after short delay (we can't reliably detect cross-origin iframe completion)
       window.setTimeout(() => {
@@ -637,4 +960,3 @@
   }
 
 })();
-

@@ -37,6 +37,56 @@
   grid-template-columns: 1fr;
   gap: 10px; /* tighter spacing on mobile */
 }
+/* Programs on phone: football + basketball side by side */
+#programs .cards-grid{
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px;
+}
+#programs .card{
+  border-radius: 16px;
+  padding: 0 !important;
+  overflow: hidden;
+}
+#programs .card-media{
+  margin: 0 !important;
+  width: 100% !important;
+}
+#programs .card-media img{
+  height: 150px;
+  aspect-ratio: auto;
+  object-fit: cover;
+  width: 100% !important;
+  display: block;
+}
+#programs .card-body{
+  padding: 10px;
+}
+#programs .card-title{
+  font-size: .98rem;
+  margin-bottom: 6px;
+}
+#programs .card-text{
+  font-size: .82rem;
+  margin-bottom: 8px;
+}
+#programs .card-link{
+  font-size: .9rem;
+}
+#programs .program-card{
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 991.98px){
+  /* Reduce scroll jank on touch devices in Programs section */
+  #programs .program-card,
+  #programs .program-card::before,
+  #programs .program-card .card-media img{
+    transition: none !important;
+  }
+  #programs .program-card::before{
+    display: none;
+  }
+}
 .coaches-grid{
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -99,7 +149,6 @@
 .hero-card{
   padding: 14px;
   max-width: 100%;
-  display: none; /* hide empty translucent card on mobile */
 }
 .hero-img{
   transform: none;
@@ -109,24 +158,17 @@
 .hero-title{
   letter-spacing: -.3px;
   margin-bottom: 8px;
-  display: none;
 }
 .hero-sub{
   font-size: var(--step--1);
   margin-bottom: 12px;
-  display: none;
-}
-.hero-badges{
-  display: none;
 }
 .hero-cta{
-  display:none;
   flex-wrap:wrap;
   gap: 8px;
   margin-top: 10px;
 }
 .hero-badges{
-  display: none;
   flex-wrap:wrap;
   gap: 8px;
   margin-top: 10px;
@@ -314,15 +356,512 @@
   img{ max-width: 100%; display: block; }
   html, body, main{ overflow-x: hidden; }
 
-  /* Very small phones: stack form fields to one column to avoid cramped inputs */
-  @media (max-width: 360px) {
-    .form-grid{ grid-template-columns: 1fr; }
-  }
-
   .top-socials{ gap: 4px; }
   .top-social{
     width: 32px;
     height: 32px;
   }
   .top-social .ico{ width: 16px; height: 16px; }
+
+  /* Keep programs side-by-side on very small phones */
+  #programs .cards-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px;
+  }
+  #programs .card-media img{
+    height: 140px;
+    object-fit: cover;
+  }
 }
+
+/* Keep register fields in two columns on very small phones */
+@media (max-width: 419.98px){
+  #register .form-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  #register .field-full{ grid-column: auto !important; }
+}
+
+/* === Hero visibility / readability on mobile === */
+@media (max-width: 991.98px){
+  .hero-card{ display:block !important; }
+  .hero-title{ display:block !important; }
+  .hero-sub{ display:block !important; }
+  .hero-cta{ display:flex !important; }
+  .hero-badges{ display:flex !important; }
+}
+
+/* === PATCH v8: Mobile header shows academy name (avoid empty bar) === */
+@media (max-width: 991.98px){
+  .brand-text{ display:block !important; min-width: 0; }
+  .brand-name{
+    display:block !important;
+    font-size: .92rem !important;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+  }
+  .brand-sub{ display:none !important; }
+  .header-inner{ gap:10px; }
+  .brand{ gap:10px; min-width: 0; }
+}
+
+/* === Mobile polish: typography + contrast + CTA clarity === */
+@media (max-width: 991.98px){
+  body{
+    font-family: "Inter", "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+    background: #f4f8fc;
+  }
+  .section-soft{
+    background: #eef3f8 !important;
+    border-top: 1px solid rgba(15,23,42,.08) !important;
+    border-bottom: 1px solid rgba(15,23,42,.08) !important;
+  }
+
+  .hero-overlay{
+    display: block !important;
+    background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.65)) !important;
+  }
+
+  .hero-title{
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    color: #ffffff !important;
+    white-space: pre-line;
+    text-shadow: 0 4px 12px rgba(0,0,0,.3);
+  }
+  .hero-sub{
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    color: #f1f5f9 !important;
+    max-width: 80ch;
+    text-shadow: 0 4px 12px rgba(0,0,0,.26);
+  }
+
+  .section-title{
+    font-size: clamp(22px, 5.4vw, 24px) !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+  }
+
+  .hero-actions,
+  .hero-cta{
+    gap: 10px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .hero-actions .btn,
+  .hero-cta .btn{
+    min-height: 50px !important;
+    height: 50px !important;
+    padding: 0 18px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+  }
+  .hero-actions .btn-primary,
+  .hero-cta .btn-primary{
+    background: linear-gradient(135deg, #1e4e79, #2f76b1) !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,.2) !important;
+  }
+  .hero-actions .btn-ghost,
+  .hero-cta .btn-ghost{
+    background: rgba(255,255,255,.95) !important;
+    color: #0f172a !important;
+    border: 1px solid rgba(15,23,42,.14) !important;
+  }
+
+  .hero-badges .badge{
+    background: rgba(255,255,255,.9) !important;
+    color: #0f172a !important;
+    border: 1px solid rgba(15,23,42,.12) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    padding: 8px 12px !important;
+    border-radius: 999px !important;
+    text-shadow: none !important;
+  }
+  .hero-badges{
+    gap: 8px !important;
+    margin-top: 14px !important;
+  }
+  .hero-badges .badge:nth-child(1){ order: 1; }
+  .hero-badges .badge:nth-child(2){ order: 2; }
+  .hero-badges .badge:nth-child(3){ order: 3; }
+
+  #about .lead,
+  #about .section-sub{
+    font-size: 15.5px !important;
+    line-height: 1.8 !important;
+    color: #334155 !important;
+    max-width: 90%;
+  }
+
+  /* Header: reduce visual height on mobile */
+  .site-header{
+    min-height: auto !important;
+  }
+  .header-inner{
+    padding: 6px 0 !important;
+  }
+  .brand-logo{
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 10px !important;
+  }
+  .nav-menu{
+    padding: 3px 5px !important;
+  }
+  .nav-link{
+    min-height: 28px !important;
+    padding: 5px 9px !important;
+    font-size: .78rem !important;
+  }
+}
+
+/* Final mobile theme + contrast safety */
+@media (max-width: 991.98px){
+  body,
+  main,
+  section,
+  .section,
+  .section-soft{
+    background: #eef3f8 !important;
+  }
+
+  .hero{
+    background: #e9eef5 !important;
+  }
+
+  /* Light sections */
+  #about,
+  #coaches,
+  #gallery{
+    background: #eef3f8 !important;
+  }
+  #about :is(.section-title, .feature-title, .card-title, .coach-name, h2, h3),
+  #coaches :is(.section-title, .feature-title, .card-title, .coach-name, h2, h3),
+  #gallery :is(.section-title, .feature-title, .card-title, .coach-name, h2, h3){
+    color: #0f172a !important;
+    text-shadow: none !important;
+  }
+  #about :is(.section-sub, .lead, .card-text, .feature-sub, .coach-role, p, li),
+  #coaches :is(.section-sub, .lead, .card-text, .feature-sub, .coach-role, p, li),
+  #gallery :is(.section-sub, .lead, .card-text, .feature-sub, .coach-role, p, li){
+    color: #334155 !important;
+  }
+  #about .about-metrics .feature-title{
+    color: #ffffff !important;
+  }
+  #about .about-metrics .feature-sub{
+    color: rgba(237,247,255,.90) !important;
+  }
+  #about .about-metrics .metric-chip{
+    color: #ecfeff !important;
+  }
+
+  /* Programs stays intentionally dark cards */
+  #programs{
+    background: rgba(200,209,221,.44) !important;
+  }
+  #programs .program-card,
+  #programs .card{
+    background: linear-gradient(135deg, #1e4e79, #2f76b1) !important;
+    border: 1px solid rgba(30,78,121,.42) !important;
+    box-shadow: 0 12px 24px rgba(30,78,121,.20) !important;
+  }
+  #programs :is(.card-title, .card-text, .card-link){
+    color: #fff !important;
+    text-shadow: none !important;
+  }
+  #programs .program-side-text :is(.section-title, .section-sub, li){
+    color: #0f172a !important;
+  }
+
+  /* Register keeps dark form */
+  #register{
+    background: rgba(200,209,221,.44) !important;
+    padding-bottom: 88px !important; /* keep content clear from floating WhatsApp button */
+  }
+  #register .form-card{
+    background: linear-gradient(145deg, rgba(31,94,145,.95), rgba(38,115,177,.94)) !important;
+    border: 1px solid rgba(215,241,255,.28) !important;
+    box-shadow: 0 20px 44px rgba(10,34,58,.20) !important;
+    border-radius: 16px !important;
+    padding: 18px !important;
+  }
+  #register .form-card :is(label, .required-note, .form-status, .form-trust){
+    color: rgba(255,255,255,.92) !important;
+  }
+  #register .form-card :is(input, select, textarea){
+    background: #fff !important;
+    border: 1px solid rgba(15,23,42,.22) !important;
+  }
+  #register .form-card :is(input, select, textarea):focus{
+    border-color: rgba(46,164,255,.78) !important;
+    box-shadow: 0 0 0 4px rgba(44,186,255,.22), 0 10px 24px rgba(17,95,154,.14) !important;
+  }
+  #register .form-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  #register .field-full{
+    grid-column: auto !important;
+  }
+  #register .form-actions{
+    grid-template-columns: 1fr !important;
+  }
+  #register .form-actions .btn{
+    min-height: 48px !important;
+    width: 100% !important;
+  }
+
+  /* Footer/CTA remains dark blue */
+  .cta-info,
+  footer{
+    background:
+      radial-gradient(680px 260px at 88% -20%, rgba(32,201,151,.24), transparent 60%),
+      radial-gradient(620px 220px at 12% 120%, rgba(67,152,255,.22), transparent 62%),
+      linear-gradient(135deg, #07172c 0%, #0d3257 54%, #1360a0 100%) !important;
+    color: #fff !important;
+    border-top: 1px solid rgba(255,255,255,.12) !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+  }
+  .cta-info .cta-info-title,
+  .cta-info .cta-item,
+  .cta-info .cta-social,
+  footer .footer-title{
+    color: #fff !important;
+  }
+  .cta-info .cta-info-sub,
+  .cta-info .cta-item span:not(.cta-item-ico),
+  footer p,
+  footer a{
+    color: rgba(255,255,255,.86) !important;
+  }
+
+  .top-social,
+  .cta-social,
+  .social a{
+    background: #1e4e79 !important;
+    border-color: rgba(255,255,255,.28) !important;
+  }
+  .top-social-wa,
+  .cta-social-wa,
+  .social a[data-brand="whatsapp"]{
+    background: #22c55e !important;
+  }
+
+  /* Inner pages safety on phone */
+  .page-inner :is(.hero-text, .program-desc, .info li, .notice){
+    color: #243244 !important;
+  }
+  .page-inner :is(.program-title, .card h2, .info h3){
+    color: #0f172a !important;
+  }
+}
+
+/* FINAL HERO FIX (mobile): keep text below image + natural landscape ratio */
+@media (max-width: 991.98px){
+  .hero{
+    min-height: auto !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    overflow: visible !important;
+    padding-top: 10px !important; /* nudge hero image below fixed header */
+  }
+  .hero-bg{
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+  }
+  .hero-img{
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    transform: none !important;
+    filter: brightness(1.14) saturate(1.14) contrast(1.04) !important;
+  }
+  .hero-overlay{
+    display: none !important;
+    background: none !important;
+  }
+  .hero-content{
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    order: 1 !important;
+    padding: 12px 0 14px !important;
+  }
+  .hero-card{
+    background: rgba(15,23,42,.28) !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    box-shadow: 0 14px 30px rgba(0,0,0,.16) !important;
+  }
+}
+
+@media (max-width: 575.98px){
+  .hero-content{ padding-top: 10px !important; }
+}
+
+/* FINAL OVERRIDE: hero heading/subheading text must be black on mobile */
+@media (max-width: 991.98px){
+  .hero-eyebrow,
+  .hero-title,
+  .hero-sub{
+    color: #000 !important;
+    text-shadow: none !important;
+  }
+  .hero-title{
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+  }
+}
+
+/* Inner pages (Girls/Programs): push hero copy slightly below fixed header */
+@media (max-width: 991.98px){
+  .page-inner .hero{
+    padding-top: 24px !important;
+  }
+}
+
+/* About metrics + video sizing refinement on phones */
+@media (max-width: 991.98px){
+  #about .about-metrics{
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: auto !important;
+    overflow: visible !important;
+    gap: 8px !important;
+  }
+  #about .metric-card{
+    gap: 8px !important;
+    padding: 10px 8px !important;
+    border-radius: 14px !important;
+  }
+  #about .metric-ico{
+    width: 34px !important;
+    height: 34px !important;
+    flex-basis: 34px !important;
+    border-radius: 10px !important;
+    font-size: .95rem !important;
+  }
+  #about .metric-value{
+    font-size: clamp(1.08rem, 3.15vw, 1.3rem) !important;
+    margin-bottom: 2px !important;
+  }
+  #about .metric-card .feature-title{
+    font-size: .72rem !important;
+    line-height: 1.25 !important;
+  }
+  #about .metric-card .feature-sub{
+    font-size: .62rem !important;
+    line-height: 1.25 !important;
+    margin-top: 2px !important;
+  }
+  #about .metric-chip{
+    min-height: 20px !important;
+    padding: 2px 8px !important;
+    font-size: .62rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  #about .about-media{
+    max-width: none !important;
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  #about .about-media .video-wrap{
+    border-radius: 0 !important;
+    display: block !important;
+    min-height: 220px !important;
+  }
+  #about .about-media .ratio{
+    aspect-ratio: 16 / 9 !important;
+    min-height: 220px !important;
+  }
+  #about .about-media iframe{
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* FINAL Mobile Footer Fix: keep horizontal 2-col layout on phones */
+@media (max-width: 768px){
+  .site-footer{
+    background:
+      radial-gradient(560px 180px at 90% -20%, rgba(42,211,139,.14), transparent 62%),
+      linear-gradient(180deg, #09192b 0%, #071425 100%) !important;
+    color: #fff !important;
+  }
+  .site-footer-grid{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    padding: 40px 15px !important;
+  }
+  .site-footer-grid .footer-col{
+    width: auto !important;
+    min-width: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  .footer-heading{
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+    margin: 0 0 14px !important;
+    line-height: 1.2 !important;
+  }
+  .footer-name{
+    color: #fff !important;
+  }
+  .footer-desc,
+  .footer-links-list a,
+  .footer-hours-list div,
+  .site-footer .footer-col p,
+  .site-footer .footer-col li,
+  .site-footer .footer-col a{
+    font-size: 14px !important;
+    color: rgba(255,255,255,.75) !important;
+  }
+
+  .footer-socials{
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  .footer-social{
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .footer-social .ico{
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .sub-footer{
+    background: rgba(3,10,18,.7) !important;
+  }
+  .sub-footer-inner{
+    min-height: 44px !important;
+    font-size: .74rem !important;
+    color: rgba(255,255,255,.6) !important;
+  }
+}
+

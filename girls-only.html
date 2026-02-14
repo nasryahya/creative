@@ -1,0 +1,705 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0f3153" />
+  <title>تدريب البنات فقط | Creativity Sports Academy</title>
+  <meta name="description" content="برنامج تدريب خاص للبنات فقط (غير مختلط) بإشراف مدربات محترفات ضمن بيئة آمنة ومحفزة." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" />
+  <style>
+    :root{
+      --ink:#0f172a;
+      --muted:#4e627a;
+      --bg:#d9e1ec;
+      --primary:#0f3153;
+      --primary-2:#1f6aa6;
+      --accent:#20c997;
+      --line:rgba(15,23,42,.12);
+      --card:#ffffff;
+      --shadow:0 16px 40px rgba(8,24,44,.14);
+      --radius:22px;
+      --container:1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{
+      margin:0;
+      padding:0;
+      height:auto;
+      overflow-x:hidden;
+      -webkit-overflow-scrolling:touch;
+    }
+    body{
+      min-height:100%;
+      font-family:"Cairo","Noto Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(700px 280px at 88% -8%, rgba(32,201,151,.20), transparent 62%),
+        radial-gradient(620px 300px at 8% 5%, rgba(31,106,166,.22), transparent 60%),
+        var(--bg);
+      line-height:1.65;
+    }
+
+    .container{ width:100%; max-width:var(--container); margin-inline:auto; padding-inline:16px; }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:80;
+      border-bottom:1px solid rgba(255,255,255,.24);
+      background:linear-gradient(135deg, rgba(8,30,52,.96), rgba(17,64,108,.92) 56%, rgba(34,118,177,.9));
+      backdrop-filter: blur(10px) saturate(1.15);
+      box-shadow: 0 16px 34px rgba(7,20,38,.22);
+      overflow:hidden;
+    }
+    .topbar::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background: linear-gradient(105deg, rgba(255,255,255,.16), transparent 30%, transparent 70%, rgba(255,255,255,.12));
+    }
+    .topbar-inner{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; }
+    .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
+    .brand img{ width:42px; height:42px; border-radius:13px; object-fit:cover; border:1px solid rgba(255,255,255,.35); }
+    .brand h1{ margin:0; color:#fff; font-size:1rem; line-height:1.2; font-weight:900; text-shadow: 0 8px 20px rgba(0,0,0,.22); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+    .chip{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height:36px; padding:8px 12px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.3); text-decoration:none; font-weight:800;
+      color:#fff; background:rgba(255,255,255,.12); font-size:.82rem;
+    }
+    .chip-primary{ background:linear-gradient(135deg,#20c997,#16a56f); color:#063728; border-color:rgba(255,255,255,.25); }
+
+    .hero{ padding:28px 0 16px; }
+    .hero-box{
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.52);
+      background:linear-gradient(150deg, rgba(255,255,255,.80), rgba(244,249,255,.92));
+      box-shadow:var(--shadow);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-box::after{
+      content:"";
+      position:absolute;
+      left:-40px;
+      bottom:-40px;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(32,201,151,.28), transparent 70%);
+      pointer-events:none;
+    }
+    .hero-title{ margin:0 0 8px; font-size:clamp(1.7rem,1.2rem + 1.8vw,2.5rem); line-height:1.2; font-weight:900; color:#0d3558; }
+    .hero-text{ margin:0; color:var(--muted); max-width:70ch; }
+    .hero-cards{ margin-top:14px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+    .mini-card{ border-radius:14px; border:1px solid var(--line); background:rgba(255,255,255,.86); padding:10px; text-align:center; }
+    .mini-card strong{ display:block; color:#0f3153; font-weight:900; }
+    .mini-card span{ color:#5a6e86; font-size:.82rem; }
+
+    .section{ padding:18px 0; }
+    .layout{ display:grid; grid-template-columns:1fr; gap:14px; }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:linear-gradient(155deg, #1a4e7c, #2f75ad) !important;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card-media{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:0;
+      background:#e8eff7;
+    }
+    .card-img{ width:100%; height:220px; object-fit:cover; display:block; }
+    .card-body{ padding:14px; }
+    .card h2{ margin:0 0 8px; color:#ffffff !important; font-size:1.45rem; font-weight:900; }
+    .card p{ margin:0 0 10px; color:rgba(236,246,255,.92) !important; }
+
+    .grid-2{ display:grid; grid-template-columns:1fr; gap:10px; }
+    .info{
+      border-radius:16px;
+      border:1px solid rgba(186,224,251,.58);
+      background:linear-gradient(145deg, #dcecff, #cfe5fb);
+      padding:12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .info h3{ margin:0 0 7px; color:#103a5e; font-size:1rem; font-weight:900; }
+    .info ul{ margin:0; padding-right:18px; }
+    .info li{ margin:6px 0; color:#26374a; font-size:.92rem; }
+
+    .plan{ border-radius:var(--radius); border:1px solid var(--line); background:linear-gradient(150deg,#0f2e49,#1d6097); color:#fff; box-shadow:0 20px 48px rgba(8,24,44,.22); padding:16px; }
+    .plan h2{ margin:0 0 10px; font-size:1.35rem; font-weight:900; }
+    .steps{ display:grid; gap:10px; }
+    .step{ border-radius:14px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); padding:10px; }
+    .step strong{ display:block; font-size:.98rem; }
+    .step span{ color:rgba(255,255,255,.86); font-size:.88rem; }
+
+    .cta{ margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height:40px; padding:10px 14px; border-radius:12px;
+      text-decoration:none; font-weight:800; border:1px solid transparent;
+      transition:transform .18s ease;
+    }
+    .btn:hover{ transform:translateY(-1px); }
+    .btn-primary{ background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; box-shadow:0 10px 24px rgba(30,78,121,.28); }
+    .btn-secondary{ background:rgba(32,201,151,.16); border-color:rgba(32,201,151,.35); color:#0d3d35; }
+
+    .notice{
+      border-radius:16px;
+      border:1px dashed rgba(170,214,246,.58);
+      background:linear-gradient(145deg, #d8ebff, #c8e0f8);
+      padding:12px;
+      color:#163b5a;
+      font-size:.92rem;
+      font-weight:700;
+    }
+
+    .cta-info{
+      position: relative;
+      isolation: isolate;
+      padding: 52px 0;
+      background:
+        radial-gradient(680px 260px at 88% -20%, rgba(32,201,151,.24), transparent 60%),
+        radial-gradient(620px 220px at 12% 120%, rgba(67,152,255,.22), transparent 62%),
+        linear-gradient(135deg, #07172c 0%, #0d3257 54%, #1360a0 100%);
+      border-top: 1px solid rgba(255,255,255,.12);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-top: 18px;
+    }
+    .cta-info::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background: linear-gradient(105deg, rgba(255,255,255,.10), transparent 28%, transparent 72%, rgba(255,255,255,.08));
+    }
+    .cta-info-inner{
+      position: relative;
+      z-index: 1;
+      display:grid;
+      grid-template-columns: 1.1fr 1fr auto;
+      gap: 20px;
+      align-items:center;
+      color: #fff;
+    }
+    .cta-info-brand{ max-width: 560px; }
+    .cta-info-logo{
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow: 0 18px 36px rgba(2,10,22,.35);
+      margin-bottom: 12px;
+    }
+    .cta-info-title{
+      margin: 0 0 4px;
+      font-size: clamp(1.6rem, 1.3rem + 1.1vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+    }
+    .cta-info-sub{
+      margin: 0;
+      color: rgba(255,255,255,.88);
+      font-size: 1rem;
+    }
+    .cta-info-list{ display:grid; gap: 10px; }
+    .cta-item{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      width: fit-content;
+      min-height: 42px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.20);
+      color: #fff;
+      font-weight: 700;
+      text-decoration:none;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .cta-item:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.18);
+      box-shadow: 0 12px 26px rgba(2,10,22,.25);
+    }
+    .cta-item-wa{
+      background: rgba(37,211,102,.20);
+      border-color: rgba(37,211,102,.55);
+    }
+    .cta-item-wa:hover{ background: rgba(37,211,102,.28); }
+    .cta-socials{ display:flex; align-items:center; gap: 10px; }
+    .cta-social{
+      min-width: 124px;
+      height: 48px;
+      border-radius: 999px;
+      padding: 0 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      color: #fff;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,.32);
+      box-shadow: 0 14px 28px rgba(2,10,22,.28);
+      text-decoration:none;
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .cta-social .ico{ width: 18px; height: 18px; display:block; }
+    .cta-social:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 18px 34px rgba(2,10,22,.34);
+      filter: brightness(1.05);
+    }
+    .cta-social-fb{ background: #1877F2; }
+    .cta-social-ig{ background: linear-gradient(135deg, #f58529 0%, #dd2a7b 40%, #8134af 70%, #515bd4 100%); }
+    .cta-social-wa{
+      background: #25D366;
+      border-color: rgba(255,255,255,.45);
+    }
+
+    @media (min-width: 920px){
+      .layout{ grid-template-columns: 1.1fr .9fr; }
+      .grid-2{ grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .card-img{ height:290px; }
+    }
+
+    @media (max-width: 760px){
+      .topbar-inner{ align-items:flex-start; }
+      .hero-cards{ grid-template-columns:1fr; }
+      .card-media{ grid-template-columns:1fr; }
+      .card-img{ height:170px; }
+      .chip{ min-height:34px; font-size:.78rem; }
+      .brand h1{ font-size:.92rem; }
+      .cta-info{ padding: 40px 0; }
+      .cta-info-inner{
+        grid-template-columns: 1fr;
+        gap: 16px;
+        text-align: center;
+      }
+      .cta-info-brand{ margin-inline: auto; }
+      .cta-info-logo{ margin: 0 auto 10px; }
+      .cta-info-list{ justify-items: center; }
+      .cta-socials{
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cta-social{
+        min-width: 110px;
+        height: 44px;
+        padding: 0 12px;
+        font-size: .85rem;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/desktop.css" media="(min-width: 992px)" />
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 991.98px)" />
+</head>
+<body class="page-inner">
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html#top" aria-label="Creativity Sports Academy - Qatar">
+        <img class="brand-logo" src="assets/img/logo.jpg" alt="Creativity Sports Academy logo" loading="eager" />
+        <div class="brand-text">
+          <div class="brand-name">Creativity Sports Academy</div>
+          <div class="brand-sub">Al Sadd - Doha - Qatar</div>
+        </div>
+      </a>
+
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div id="navBackdrop" class="nav-backdrop" aria-hidden="true"></div>
+
+        <div id="navMenu" class="nav-menu">
+          
+          
+          <div class="drawer-head" aria-label="Mobile menu header">
+  <button class="drawer-close" type="button" id="drawerClose" aria-label="Close menu">×</button>
+  <div class="drawer-title" data-i18n="nav.menuTitle">Menu</div>
+</div>
+<a class="nav-link" href="index.html#top" data-nav="home" data-i18n="nav.home">Home</a>
+<a class="nav-link" href="index.html#about" data-nav="about" data-i18n="nav.about">About</a>
+          <a class="nav-link" href="girls-only.html" data-nav="girls" data-i18n="nav.girlsPage">Girls Only</a>
+          <a class="nav-link" href="programs.html" data-nav="programs" data-i18n="nav.programs">Programs</a>
+          <a class="nav-link" href="index.html#coaches" data-nav="coaches" data-i18n="nav.coaches">Coaches</a>
+          <a class="nav-link" href="index.html#gallery" data-nav="gallery" data-i18n="nav.gallery">Gallery</a>
+
+          <div class="nav-actions">
+            <a class="nav-link" href="#register" data-i18n="header.cta">Register</a>
+          </div>
+
+          <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span id="langPill" class="lang-pill">EN</span></button>
+        </div>
+
+        <div class="top-socials" aria-label="Social links">
+          <a class="top-social top-social-fb" href="https://www.facebook.com/CREATIVITY.SPORTS.ACADEMY.QATAR.BASKETBALL.FOOTBAL" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M13.5 22v-8.5H16l.5-3h-3V8.6c0-.87.24-1.46 1.5-1.46H16.6V4.43c-.33-.04-1.46-.13-2.77-.13-2.74 0-4.62 1.67-4.62 4.74V10.5H6.5v3h2.71V22h4.29z"/>
+            </svg>
+          </a>
+          <a class="top-social top-social-ig" href="https://www.instagram.com/creativity_sport_academy_qatar/?hl=ar" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.1a3.9 3.9 0 1 1 0 7.8 3.9 3.9 0 0 1 0-7.8zM12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm5.6-.9a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8z"/>
+            </svg>
+          </a>
+          <a class="top-social top-social-wa" href="https://wa.me/97450149045" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M19.05 4.95A9.93 9.93 0 0 0 12 2a10 10 0 0 0-8.66 14.99L2 22l5.16-1.35A10 10 0 1 0 19.05 4.95zm-7.06 15.37a8.27 8.27 0 0 1-4.22-1.16l-.3-.18-3.06.8.82-2.98-.2-.31a8.31 8.31 0 1 1 6.96 3.83zm4.56-6.22c-.25-.13-1.47-.72-1.7-.8-.23-.08-.4-.13-.57.13-.16.24-.65.8-.8.96-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.27.37-.4.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.13-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.02 2.6.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.52.6.19 1.14.16 1.57.1.48-.07 1.51-.62 1.72-1.21.21-.59.21-1.09.15-1.2-.07-.1-.23-.16-.48-.29z"/>
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="about-girls">
+      <div class="container">
+        <div class="hero-box">
+          <h2 class="hero-title">برنامج تدريب خاص للبنات فقط (غير مختلط)</h2>
+          <p class="hero-text">هذا القسم مخصص للبنات فقط ضمن بيئة تدريب آمنة، خاصة، وداعمة، بإشراف مدربات محترفات بخبرة في تدريب الأطفال. نركز على تطوير المهارة، بناء الثقة، والانضباط بطريقة ممتعة وتدريجية.</p>
+          <div class="hero-cards">
+            <div class="mini-card"><strong>Girls Only</strong><span>تدريب غير مختلط</span></div>
+            <div class="mini-card"><strong>Female Coaches</strong><span>مدربات محترفات</span></div>
+            <div class="mini-card"><strong>Safe Space</strong><span>خصوصية وأمان كامل</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container layout">
+        <article class="card">
+          <div class="card-media">
+            <img class="card-img" src="assets/img/gallery-2.jpg" alt="تدريب بنات في الأكاديمية" loading="lazy" />
+            <img class="card-img" src="assets/img/basketball-5.jpg" alt="تدريب كرة السلة للبنات" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h2>لماذا هذا البرنامج مناسب للبنات؟</h2>
+            <p>لأننا نوفر بيئة تدريب مريحة تحترم الخصوصية وتساعد البنت تتطور بثقة، بعيدًا عن الضغط، وبأسلوب يناسب عمرها وقدراتها.</p>
+
+            <div class="grid-2">
+              <div class="info">
+                <h3>المزايا الأساسية</h3>
+                <ul>
+                  <li>تدريب غير مختلط مخصص للبنات فقط.</li>
+                  <li>إشراف مدربات مؤهلات وخبيرات.</li>
+                  <li>متابعة فردية حسب المستوى.</li>
+                  <li>بيئة آمنة ومحفزة ومريحة.</li>
+                </ul>
+              </div>
+              <div class="info">
+                <h3>ما الذي ستكتسبه المشتركة؟</h3>
+                <ul>
+                  <li>ثقة أكبر بالنفس وحضور أقوى.</li>
+                  <li>تحسن واضح في المهارات الحركية.</li>
+                  <li>انضباط والتزام وروح فريق.</li>
+                  <li>قدرة أفضل على التركيز واتخاذ القرار.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cta">
+              <a class="btn btn-primary" href="#register">سجّلي الآن</a>
+              <a class="btn btn-secondary" href="https://wa.me/97450149045" target="_blank" rel="noopener">استفسار عبر واتساب</a>
+            </div>
+          </div>
+        </article>
+
+        <aside class="plan" id="plan">
+          <h2>كيف تتم الحصص؟</h2>
+          <div class="steps">
+            <div class="step">
+              <strong>1. تقييم مبدئي بسيط</strong>
+              <span>نحدد المستوى ونبني خطة مناسبة لكل مشتركة.</span>
+            </div>
+            <div class="step">
+              <strong>2. تدريب مهاري تدريجي</strong>
+              <span>مهارات أساسية + لياقة + توازن + تنسيق حركي.</span>
+            </div>
+            <div class="step">
+              <strong>3. تطوير الشخصية</strong>
+              <span>نعمل على الثقة، القيادة، والانضباط في كل حصة.</span>
+            </div>
+            <div class="step">
+              <strong>4. متابعة وتغذية راجعة</strong>
+              <span>تحديث دوري عن تقدم المشتركة ونقاط التطوير.</span>
+            </div>
+          </div>
+
+          <div class="notice" style="margin-top:10px;">
+            ملاحظة: هذا القسم للبنات فقط ويُدار بالكامل بواسطة مدربات محترفات.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="register">
+      <div class="container">
+        <div class="notice">جاهزين نبدأ؟ احجزي مكان بنتك الآن عبر نموذج التسجيل في الصفحة الرئيسية أو مباشرة عبر واتساب.</div>
+      </div>
+    </section>
+  </main>
+
+  <section class="ready-start reveal" aria-label="Start now">
+    <div class="container ready-start-inner">
+      <div>
+        <p class="ready-kicker" data-i18n="ready.kicker">Ready to Start?</p>
+        <h2 class="ready-title" data-i18n="ready.title">Join the academy and build skill, confidence, and discipline.</h2>
+      </div>
+      <a class="btn btn-primary ready-btn" href="index.html#register" data-i18n="ready.btn">Book Now</a>
+    </div>
+  </section>
+
+  <div class="footer-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 110" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+      <path fill="#0f2a44" d="M0,78L48,74.7C96,71,192,63,288,52.3C384,42,480,28,576,31.3C672,35,768,57,864,66.7C960,76,1056,72,1152,61.7C1248,51,1344,35,1392,27.3L1440,20L1440,111L1392,111C1344,111,1248,111,1152,111C1056,111,960,111,864,111C768,111,672,111,576,111C480,111,384,111,288,111C192,111,96,111,48,111L0,111Z"></path>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container site-footer-grid">
+      <div class="footer-col footer-col-brand">
+        <div class="footer-brand">
+          <img class="footer-logo" src="assets/img/logo.jpg" alt="Creativity Sports Academy logo" loading="lazy" />
+          <div class="footer-name">Creativity Sports Academy</div>
+        </div>
+        <p class="footer-desc" data-i18n="footer.desc">Professional football and basketball training for children in Doha.</p>
+        <div class="footer-socials" aria-label="Social links">
+          <a class="footer-social footer-social-ig" href="https://www.instagram.com/creativity_sport_academy_qatar/?hl=ar" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.1a3.9 3.9 0 1 1 0 7.8 3.9 3.9 0 0 1 0-7.8zM12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm5.6-.9a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8z"/>
+            </svg>
+          </a>
+          <a class="footer-social footer-social-fb" href="https://www.facebook.com/CREATIVITY.SPORTS.ACADEMY.QATAR.BASKETBALL.FOOTBAL" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M13.5 22v-8.5H16l.5-3h-3V8.6c0-.87.24-1.46 1.5-1.46H16.6V4.43c-.33-.04-1.46-.13-2.77-.13-2.74 0-4.62 1.67-4.62 4.74V10.5H6.5v3h2.71V22h4.29z"/>
+            </svg>
+          </a>
+          <a class="footer-social footer-social-wa" href="https://wa.me/97450149045" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M19.05 4.95A9.93 9.93 0 0 0 12 2a10 10 0 0 0-8.66 14.99L2 22l5.16-1.35A10 10 0 1 0 19.05 4.95zm-7.06 15.37a8.27 8.27 0 0 1-4.22-1.16l-.3-.18-3.06.8.82-2.98-.2-.31a8.31 8.31 0 1 1 6.96 3.83zm4.56-6.22c-.25-.13-1.47-.72-1.7-.8-.23-.08-.4-.13-.57.13-.16.24-.65.8-.8.96-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.27.37-.4.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.13-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.02 2.6.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.52.6.19 1.14.16 1.57.1.48-.07 1.51-.62 1.72-1.21.21-.59.21-1.09.15-1.2-.07-.1-.23-.16-.48-.29z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading" data-i18n="footer.quick.title">Quick Links</h3>
+        <div class="footer-links-list">
+          <a href="index.html#top" data-i18n="footer.quick.home">Home</a>
+          <a href="index.html#about" data-i18n="footer.quick.about">About</a>
+          <a href="programs.html" data-i18n="footer.quick.programs">Programs</a>
+          <a href="girls-only.html" data-i18n="footer.quick.girls">Girls Only</a>
+          <a href="index.html#register" data-i18n="footer.quick.register">Register</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading" data-i18n="footer.contact.title">Contact</h3>
+        <div class="footer-links-list">
+          <a href="https://maps.app.goo.gl/gkWpiiyaM3RdaEWF7" target="_blank" rel="noopener" data-i18n="footer.contact.location">Doha - Al Sadd</a>
+          <a href="https://wa.me/97450149045" target="_blank" rel="noopener" data-i18n="footer.contact.whatsapp">WhatsApp: +974 50149045</a>
+          <a href="mailto:nasryahia474@gmail.com" data-i18n="footer.contact.email">Email: nasryahia474@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading" data-i18n="footer.hours.title">Training Hours</h3>
+        <div class="footer-links-list footer-hours-list">
+          <div data-i18n="footer.hours.weekdays">Sun - Thu: 4:00 PM - 9:00 PM</div>
+          <div data-i18n="footer.hours.friday">Friday: 3:00 PM - 8:00 PM</div>
+          <div data-i18n="footer.hours.saturday">Saturday: 9:00 AM - 1:00 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-footer">
+      <div class="container sub-footer-inner">
+        <div data-i18n="footer.rights">© 2026 Creativity Sports Academy - All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const shouldReplace = (href) => /(^|\/)(index|programs|girls-only)\.html(#.*)?$/i.test(href);
+      document.querySelectorAll('a[href]').forEach((a) => {
+        const href = a.getAttribute('href') || '';
+        if (!href || href.startsWith('#')) return;
+        if (!shouldReplace(href)) return;
+        if ((a.target || '').toLowerCase() === '_blank') return;
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          const url = new URL(href, window.location.href);
+          const lang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
+          url.searchParams.set('lang', lang);
+          window.location.replace(url.toString());
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    (function(){
+      const toggle = document.getElementById('langToggle');
+      if (!toggle) return;
+
+      const setText = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = value;
+      };
+      const setMany = (selector, values) => {
+        const list = document.querySelectorAll(selector);
+        values.forEach((value, i) => {
+          if (list[i]) list[i].textContent = value;
+        });
+      };
+
+      const translations = {
+        ar: {
+          title: 'تدريب البنات فقط | Creativity Sports Academy',
+          brand: 'قسم البنات فقط - Girls Only',
+          nav: ['عن البرنامج', 'خطة التدريب', 'التسجيل', 'العودة للرئيسية'],
+          heroTitle: 'برنامج تدريب خاص للبنات فقط (غير مختلط)',
+          heroText: 'هذا القسم مخصص للبنات فقط ضمن بيئة تدريب آمنة، خاصة، وداعمة، بإشراف مدربات محترفات بخبرة في تدريب الأطفال. نركز على تطوير المهارة، بناء الثقة، والانضباط بطريقة ممتعة وتدريجية.',
+          mini: ['تدريب غير مختلط', 'مدربات محترفات', 'خصوصية وأمان كامل'],
+          sectionTitle: 'لماذا هذا البرنامج مناسب للبنات؟',
+          sectionText: 'لأننا نوفر بيئة تدريب مريحة تحترم الخصوصية وتساعد البنت تتطور بثقة، بعيدًا عن الضغط، وبأسلوب يناسب عمرها وقدراتها.',
+          infoTitles: ['المزايا الأساسية', 'ما الذي ستكتسبه المشتركة؟'],
+          infoItems: [
+            'تدريب غير مختلط مخصص للبنات فقط.',
+            'إشراف مدربات مؤهلات وخبيرات.',
+            'متابعة فردية حسب المستوى.',
+            'بيئة آمنة ومحفزة ومريحة.',
+            'ثقة أكبر بالنفس وحضور أقوى.',
+            'تحسن واضح في المهارات الحركية.',
+            'انضباط والتزام وروح فريق.',
+            'قدرة أفضل على التركيز واتخاذ القرار.'
+          ],
+          cta: ['سجّلي الآن', 'استفسار عبر واتساب'],
+          planTitle: 'كيف تتم الحصص؟',
+          stepsStrong: ['1. تقييم مبدئي بسيط', '2. تدريب مهاري تدريجي', '3. تطوير الشخصية', '4. متابعة وتغذية راجعة'],
+          stepsSpan: [
+            'نحدد المستوى ونبني خطة مناسبة لكل مشتركة.',
+            'مهارات أساسية + لياقة + توازن + تنسيق حركي.',
+            'نعمل على الثقة، القيادة، والانضباط في كل حصة.',
+            'تحديث دوري عن تقدم المشتركة ونقاط التطوير.'
+          ],
+          ctaInfoTitle: 'Creativity Sports Academy',
+          ctaInfoSub: 'تدريب احترافي لكرة القدم وكرة السلة للأطفال.',
+          ctaInfoItems: ['الدوحة - السد', 'واتساب: +974 50149045', 'البريد: nasryahia474@gmail.com'],
+          ctaSocials: ['إنستغرام', 'فيسبوك', 'واتساب'],
+          notice1: 'ملاحظة: هذا القسم للبنات فقط ويُدار بالكامل بواسطة مدربات محترفات.',
+          notice2: 'جاهزين نبدأ؟ احجزي مكان بنتك الآن عبر نموذج التسجيل في الصفحة الرئيسية أو مباشرة عبر واتساب.'
+        },
+        en: {
+          title: 'Girls Only Training | Creativity Sports Academy',
+          brand: 'Girls Only Section',
+          nav: ['About Program', 'Training Plan', 'Register', 'Back to Home'],
+          heroTitle: 'Girls-only training program (non-mixed)',
+          heroText: 'This section is dedicated to girls only in a safe, private, and supportive training environment, led by professional female coaches experienced in training children.',
+          mini: ['Non-mixed training', 'Professional female coaches', 'Full privacy and safety'],
+          sectionTitle: 'Why is this program suitable for girls?',
+          sectionText: 'Because we provide a comfortable training environment that respects privacy and helps each girl improve with confidence in an age-appropriate way.',
+          infoTitles: ['Core advantages', 'What will she gain?'],
+          infoItems: [
+            'Non-mixed training dedicated to girls only.',
+            'Supervised by qualified and experienced female coaches.',
+            'Individual follow-up based on each level.',
+            'A safe, motivating, and comfortable environment.',
+            'Higher confidence and stronger presence.',
+            'Clear improvement in motor skills.',
+            'Discipline, commitment, and team spirit.',
+            'Better focus and stronger decision-making.'
+          ],
+          cta: ['Register now', 'Ask on WhatsApp'],
+          planTitle: 'How do sessions run?',
+          stepsStrong: ['1. Initial assessment', '2. Progressive skill training', '3. Character development', '4. Ongoing follow-up'],
+          stepsSpan: [
+            'We identify the level and build a suitable plan for each participant.',
+            'Core skills + fitness + balance + coordination.',
+            'We work on confidence, leadership, and discipline in every session.',
+            'Regular updates on participant progress and improvement areas.'
+          ],
+          ctaInfoTitle: 'Creativity Sports Academy',
+          ctaInfoSub: 'Professional football and basketball training for children.',
+          ctaInfoItems: ['Doha - Al Sadd', 'WhatsApp: +974 50149045', 'Email: nasryahia474@gmail.com'],
+          ctaSocials: ['Instagram', 'Facebook', 'WhatsApp'],
+          notice1: 'Note: This section is girls-only and fully managed by professional female coaches.',
+          notice2: 'Ready to start? Reserve your daughter\'s spot now via the main page form or directly on WhatsApp.'
+        }
+      };
+
+      const applyLang = (lang) => {
+        const t = translations[lang] || translations.ar;
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+        document.title = t.title;
+        toggle.textContent = lang === 'en' ? 'AR' : 'EN';
+
+        setText('.brand h1', t.brand);
+        setMany('.chip-row .chip:not(#langToggle)', t.nav);
+        setText('.hero-title', t.heroTitle);
+        setText('.hero-text', t.heroText);
+        setMany('.hero-cards .mini-card span', t.mini);
+        setText('.card h2', t.sectionTitle);
+        setText('.card .card-body > p', t.sectionText);
+        setMany('.grid-2 .info h3', t.infoTitles);
+        setMany('.grid-2 .info li', t.infoItems);
+        setMany('.card .cta .btn', t.cta);
+        setText('.plan h2', t.planTitle);
+        setMany('.steps .step strong', t.stepsStrong);
+        setMany('.steps .step span', t.stepsSpan);
+        setText('.cta-info-title', t.ctaInfoTitle);
+        setText('.cta-info-sub', t.ctaInfoSub);
+        setMany('.cta-info-list .cta-item span:not(.cta-item-ico)', t.ctaInfoItems);
+        setMany('.cta-socials .cta-social span', t.ctaSocials);
+        const notices = document.querySelectorAll('.notice');
+        if (notices[0]) notices[0].textContent = t.notice1;
+        if (notices[1]) notices[1].textContent = t.notice2;
+
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+      };
+
+      let lang = '';
+      try {
+        const qLang = new URLSearchParams(window.location.search).get('lang');
+        if (qLang === 'ar' || qLang === 'en') lang = qLang;
+      } catch (e) {}
+      try {
+        const saved = localStorage.getItem('lang');
+        if (!lang && (saved === 'ar' || saved === 'en')) lang = saved;
+      } catch (e) {}
+      if (!lang) lang = 'ar';
+
+      applyLang(lang);
+      toggle.addEventListener('click', () => {
+        applyLang(document.documentElement.lang === 'ar' ? 'en' : 'ar');
+      });
+    })();
+  </script>
+
+  <script src="js/base.js" defer></script>
+</body>
+</html>
+
+

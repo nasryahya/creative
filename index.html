@@ -18,7 +18,7 @@
 
 <body>
   <header class="site-header" id="header">
-    <div class="container header-inner">
+      <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Creativity Sports Academy – Qatar">
         <img class="brand-logo" src="assets/img/logo.jpg" alt="Creativity Sports Academy logo" loading="eager" />
         <div class="brand-text">
@@ -28,7 +28,7 @@
       </a>
 
       <nav class="nav" role="navigation" aria-label="Main navigation">
-        <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="navMenu">
+        <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
           <span></span>
           <span></span>
           <span></span>
@@ -37,13 +37,17 @@
         <div id="navBackdrop" class="nav-backdrop" aria-hidden="true"></div>
 
         <div id="navMenu" class="nav-menu">
+          
+          
+          <a class="nav-link" href="index.html#top" data-nav="home" data-i18n="nav.home">Home</a>
           <a class="nav-link" href="#about" data-nav="about" data-i18n="nav.about">About</a>
-          <a class="nav-link" href="#programs" data-nav="programs" data-i18n="nav.programs">Programs</a>
+          <a class="nav-link" href="girls-only.html" data-nav="girls" data-i18n="nav.girlsPage">Girls Only</a>
+          <a class="nav-link" href="programs.html" data-nav="programs" data-i18n="nav.programs">Programs</a>
           <a class="nav-link" href="#coaches" data-nav="coaches" data-i18n="nav.coaches">Coaches</a>
           <a class="nav-link" href="#gallery" data-nav="gallery" data-i18n="nav.gallery">Gallery</a>
 
           <div class="nav-actions">
-            <a class="btn btn-ghost" href="#register" data-i18n="header.cta">Register</a>
+            <a class="nav-link" href="#register" data-i18n="header.cta">Register</a>
           </div>
 
           <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span id="langPill" class="lang-pill">EN</span></button>
@@ -82,66 +86,21 @@
       </div>
 
       <div class="container hero-content">
-        <div class="hero-card reveal on-load from-up">
-          <h1 class="hero-title reveal on-load from-left" data-i18n="hero.title">Where creativity begins… and champions are made.</h1>
-          <p class="hero-sub reveal on-load from-right delay-1" data-i18n="hero.sub">
-            Professional football and basketball training for children, in a safe and motivating environment.
-          </p>
+  <div class="hero-grid">
+    <div class="hero-copy reveal on-load from-left">
+      <div class="hero-eyebrow" data-i18n="hero.eyebrow">Qatar • Doha • Al Sadd</div>
+      <h1 class="hero-title" data-i18n="hero.title">Where creativity begins
+Champions are made</h1>
+      <p class="hero-sub" data-i18n="hero.sub">Professional football & basketball training for children in a safe environment.</p>
 
-          <div class="hero-cta reveal on-load from-up delay-2">
-            <a class="btn btn-primary" href="#register" data-i18n="hero.primary">Register now</a>
-            <a class="btn btn-ghost" href="https://wa.me/97450149045" target="_blank" rel="noopener" data-i18n="hero.whatsapp">WhatsApp</a>
-          </div>
-
-          <div class="hero-badges">
-            <div class="badge reveal" style="transition-delay: 60ms;">
-              <span class="badge-dot"></span>
-              <span data-i18n="hero.badge1">From 4 years+</span>
-            </div>
-            <div class="badge reveal" style="transition-delay: 120ms;">
-              <span class="badge-dot"></span>
-              <span data-i18n="hero.badge2">Girls-only sessions</span>
-            </div>
-            <div class="badge reveal" style="transition-delay: 180ms;">
-              <span class="badge-dot"></span>
-              <span data-i18n="hero.badge3">Values before competition</span>
-            </div>
-          </div>
-        </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#register" data-i18n="hero.primary">Register now</a>
+        <a class="btn btn-ghost" href="https://wa.me/97450149045" target="_blank" rel="noopener" data-i18n="hero.whatsapp">WhatsApp</a>
       </div>
 
-      <a class="scroll-hint" href="#about" aria-label="Scroll">
-        <span class="mouse"></span>
-      </a>
-    </section>
-
-    <!-- TRUST STRIP -->
-    <section class="strip">
-      <div class="container strip-grid">
-        <div class="strip-item reveal">
-          <div class="strip-icon">⚽</div>
-          <div>
-            <div class="strip-title" data-i18n="strip.football">Football training</div>
-            <div class="strip-sub" data-i18n="strip.footballSub">Modern methods • Fun • Discipline</div>
-          </div>
-        </div>
-
-        <div class="strip-item reveal" style="transition-delay: 80ms;">
-          <div class="strip-icon">🏀</div>
-          <div>
-            <div class="strip-title" data-i18n="strip.basketball">Basketball programs</div>
-            <div class="strip-sub" data-i18n="strip.basketballSub">Skills • Confidence • Teamwork</div>
-          </div>
-        </div>
-
-        <div class="strip-item reveal" style="transition-delay: 160ms;">
-          <div class="strip-icon">🛡️</div>
-          <div>
-            <div class="strip-title" data-i18n="strip.safe">Safe environment</div>
-            <div class="strip-sub" data-i18n="strip.safeSub">Children-first • Supportive coaching</div>
-          </div>
-        </div>
-      </div>
+    </div>
+  </div>
+</div>
     </section>
 
     <!-- ABOUT -->
@@ -153,34 +112,51 @@
             We believe every child has a unique talent — our role is to discover it and develop it with knowledge, discipline, and enjoyment.
           </p>
 
-          <div class="feature-list">
-            <div class="feature reveal" style="transition-delay: 60ms;">
-              <div class="feature-ico">🎯</div>
-              <div>
-                <div class="feature-title" data-i18n="about.f1t">Building confidence</div>
-                <div class="feature-sub" data-i18n="about.f1s">Because confidence starts early.</div>
-              </div>
-            </div>
+          <p class="section-sub" data-i18n="about.story">
+            At Creativity Sports Academy in Al Sadd, football and basketball training are a core path to build confidence, discipline, and strong character from an early age.
+          </p>
+          <p class="section-sub" data-i18n="about.p1">
+            We celebrate effort before results, reward commitment, and help every child take confident steps toward a stronger athletic future.
+          </p>
+          <p class="section-sub" data-i18n="about.p2">
+            Every session combines professional coaching, safety, motivation, and enjoyment to create future leaders on and off the field.
+          </p>
 
-            <div class="feature reveal" style="transition-delay: 120ms;">
-              <div class="feature-ico">🤝</div>
-              <div>
-                <div class="feature-title" data-i18n="about.f2t">Teamwork & discipline</div>
-                <div class="feature-sub" data-i18n="about.f2s">We develop values before performance.</div>
+          <div class="feature-list about-metrics" aria-label="Academy highlights">
+            <article class="feature metric-card reveal" style="transition-delay: 60ms;">
+              <div class="feature-ico metric-ico" aria-hidden="true">⚽</div>
+              <div class="metric-body">
+                <div class="metric-value">
+                  <span class="count-up" data-count-to="1500" data-count-duration="2600">0</span><span class="metric-suffix">+</span>
+                </div>
+                <div class="feature-title" data-i18n="about.m1t">Players Trained</div>
+                <div class="feature-sub" data-i18n="about.m1s">Professionally trained with modern methods.</div>
               </div>
-            </div>
+            </article>
 
-            <div class="feature reveal" style="transition-delay: 180ms;">
-              <div class="feature-ico">👧</div>
-              <div>
-                <div class="feature-title" data-i18n="about.f3t">Girls-only training</div>
-                <div class="feature-sub" data-i18n="about.f3s">Full privacy with qualified female coaches.</div>
+            <article class="feature metric-card reveal" style="transition-delay: 120ms;">
+              <div class="feature-ico metric-ico" aria-hidden="true">🏆</div>
+              <div class="metric-body">
+                <div class="metric-value">
+                  <span class="count-up" data-count-to="10" data-count-duration="2100">0</span><span class="metric-suffix">+</span>
+                </div>
+                <div class="feature-title" data-i18n="about.m2t">Years of Experience</div>
+                <div class="feature-sub" data-i18n="about.m2s">Structured coaching built on proven development plans.</div>
               </div>
-            </div>
+            </article>
+
+            <article class="feature metric-card reveal" style="transition-delay: 180ms;">
+              <div class="feature-ico metric-ico" aria-hidden="true">👧</div>
+              <div class="metric-body">
+                <div class="metric-chip" data-i18n="about.m3chip">Girls Only</div>
+                <div class="feature-title" data-i18n="about.m3t">Specialized Training for Girls</div>
+                <div class="feature-sub" data-i18n="about.m3s">Private sessions led by qualified female coaches.</div>
+              </div>
+            </article>
           </div>
 
           <div class="section-actions">
-            <a class="btn btn-secondary" href="#programs" data-i18n="about.cta1">Explore programs</a>
+            <a class="btn btn-secondary" href="programs.html" data-i18n="about.cta1">Explore programs</a>
           </div>
         </div>
 
@@ -203,68 +179,54 @@
       </div>
     </section>
 
-    <!-- PROGRAMS -->
+    <!-- PROGRAMS OVERVIEW -->
     <section class="section section-soft" id="programs">
       <div class="container">
         <div class="section-head reveal">
           <h2 class="section-title" data-i18n="programs.title">Programs</h2>
-          <p class="section-sub" data-i18n="programs.sub">Specialized football & basketball training for children — starting from 4 years old.</p>
+          <p class="section-sub" data-i18n="programs.overview.sub">Quick look at our football and basketball programs. Full details are available on a dedicated page.</p>
         </div>
 
         <div class="cards-grid">
-          <article class="card reveal">
+          <a class="card program-card reveal" href="programs.html#football-program" aria-label="View football program details">
             <div class="card-media">
-              <img src="assets/img/football-2.jpg" alt="Football training" loading="lazy" />
+              <img src="assets/img/P1.jpeg" alt="Football training" loading="lazy" />
             </div>
             <div class="card-body">
               <h3 class="card-title" data-i18n="programs.football.title">Football Training</h3>
-              <p class="card-text" data-i18n="programs.football.text">
-                Professional football training for children — skills, discipline, and teamwork through modern, safe methods.
+              <p class="card-text" data-i18n="programs.overview.football.text">
+                A structured path for skills, movement, teamwork, and confidence building.
               </p>
-              <ul class="bullets">
-                <li data-i18n="programs.b1">Physical development</li>
-                <li data-i18n="programs.b2">Confidence & discipline</li>
-                <li data-i18n="programs.b3">Team spirit</li>
-              </ul>
-              <a class="card-link" href="#register" data-i18n="programs.link">Register</a>
+              <span class="card-link" data-i18n="programs.detailsLink">View full details</span>
             </div>
-          </article>
+          </a>
 
-          <article class="card reveal" style="transition-delay: 80ms;">
+          <a class="card program-card reveal" style="transition-delay: 80ms;" href="programs.html#basketball-program" aria-label="View basketball program details">
             <div class="card-media">
-              <img src="assets/img/basketball-1.jpg" alt="Basketball training" loading="lazy" />
+              <img src="assets/img/P2.jpeg" alt="Basketball training" loading="lazy" />
             </div>
             <div class="card-body">
               <h3 class="card-title" data-i18n="programs.basketball.title">Basketball Training</h3>
-              <p class="card-text" data-i18n="programs.basketball.text">
-                Specialized basketball programs for children — skill building, confidence, and leadership in a supportive environment.
+              <p class="card-text" data-i18n="programs.overview.basketball.text">
+                Focused sessions to build technical skills, discipline, and game awareness.
               </p>
-              <ul class="bullets">
-                <li data-i18n="programs.b4">Skills & coordination</li>
-                <li data-i18n="programs.b5">Self-confidence</li>
-                <li data-i18n="programs.b6">Discipline & focus</li>
-              </ul>
-              <a class="card-link" href="#register" data-i18n="programs.link">Register</a>
+              <span class="card-link" data-i18n="programs.detailsLink">View full details</span>
             </div>
-          </article>
+          </a>
 
-          <article class="card reveal" style="transition-delay: 160ms;">
-            <div class="card-media">
-              <img src="assets/img/gallery-6.jpg" alt="Kids coaching" loading="lazy" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title" data-i18n="programs.values.title">Values & Development</h3>
-              <p class="card-text" data-i18n="programs.values.text">
-                We focus on building character first — respect, responsibility, and confidence — to create future leaders.
-              </p>
-              <ul class="bullets">
-                <li data-i18n="programs.b7">Safe & motivating</li>
-                <li data-i18n="programs.b8">Girls-only options</li>
-                <li data-i18n="programs.b9">Modern methodology</li>
-              </ul>
-              <a class="card-link" href="#contact" data-i18n="programs.link2">Contact us</a>
-            </div>
-          </article>
+          <div class="program-side-text reveal" style="transition-delay: 120ms;">
+            <h3 class="section-title" data-i18n="programs.side.title">Why parents choose our academy</h3>
+            <p class="section-sub" data-i18n="programs.side.sub">
+              We combine safety, discipline, and motivation in every session to help children grow with confidence.
+            </p>
+            <ul class="programs-bullets">
+              <li data-i18n="programs.side.l1">Professional coaching for children.</li>
+              <li data-i18n="programs.side.l2">Girls-only sessions with full privacy.</li>
+              <li data-i18n="programs.side.l3">Focus on character before competition.</li>
+            </ul>
+            <a class="btn btn-secondary" href="#register" data-i18n="programs.side.cta">Start registration</a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -281,22 +243,30 @@
 
         <div class="coaches-grid">
           <article class="coach reveal">
-            <div class="avatar">CA</div>
+            <div class="avatar">
+              <img src="https://i.pravatar.cc/240?img=12" alt="Default coach profile" loading="lazy" />
+            </div>
             <div class="coach-name" data-i18n="coaches.c1n">Coach A</div>
             <div class="coach-role" data-i18n="coaches.c1r">Football • Kids development</div>
           </article>
           <article class="coach reveal" style="transition-delay: 70ms;">
-            <div class="avatar">CB</div>
+            <div class="avatar">
+              <img src="https://i.pravatar.cc/240?img=32" alt="Default coach profile" loading="lazy" />
+            </div>
             <div class="coach-name" data-i18n="coaches.c2n">Coach B</div>
             <div class="coach-role" data-i18n="coaches.c2r">Basketball • Skills training</div>
           </article>
           <article class="coach reveal" style="transition-delay: 140ms;">
-            <div class="avatar">CG</div>
+            <div class="avatar">
+              <img src="https://i.pravatar.cc/240?img=47" alt="Default coach profile" loading="lazy" />
+            </div>
             <div class="coach-name" data-i18n="coaches.c3n">Coach G</div>
             <div class="coach-role" data-i18n="coaches.c3r">Girls sessions • Female coach</div>
           </article>
           <article class="coach reveal" style="transition-delay: 210ms;">
-            <div class="avatar">CF</div>
+            <div class="avatar">
+              <img src="https://i.pravatar.cc/240?img=56" alt="Default coach profile" loading="lazy" />
+            </div>
             <div class="coach-name" data-i18n="coaches.c4n">Coach F</div>
             <div class="coach-role" data-i18n="coaches.c4r">Fitness • Coordination</div>
           </article>
@@ -340,14 +310,100 @@
       </div>
     </section>
 
+    <!-- PARENT CONCERNS -->
+    <section class="section parent-concerns-section" id="parent-concerns">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title" data-i18n="concerns.title">Is your child struggling with confidence or focus?</h2>
+          <p class="section-sub" data-i18n="concerns.sub">
+            Many parents in Doha tell us the same thing: their child is shy, distracted, or spends too much time on screens. Our training turns that into discipline, confidence, and healthy habits.
+          </p>
+        </div>
+
+        <div class="concerns-grid">
+          <article class="concerns-card reveal">
+            <h3 class="concerns-card-title" data-i18n="concerns.painTitle">What parents notice</h3>
+            <ul class="concerns-list">
+              <li data-i18n="concerns.pain1">Shy or quiet in social situations?</li>
+              <li data-i18n="concerns.pain2">Low confidence and avoids challenges?</li>
+              <li data-i18n="concerns.pain3">Too much screen time and low activity?</li>
+              <li data-i18n="concerns.pain4">Needs structure and discipline?</li>
+            </ul>
+          </article>
+
+          <article class="concerns-card concerns-card-solution reveal" style="transition-delay: 80ms;">
+            <h3 class="concerns-card-title" data-i18n="concerns.solutionTitle">What your child gains</h3>
+            <ul class="concerns-list concerns-list-solution">
+              <li data-i18n="concerns.solution1">Confidence & communication</li>
+              <li data-i18n="concerns.solution2">Discipline & focus</li>
+              <li data-i18n="concerns.solution3">Teamwork & respect</li>
+              <li data-i18n="concerns.solution4">Fitness & healthy routine</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="section-actions reveal" style="transition-delay: 120ms;">
+          <a class="btn btn-primary" href="#register" data-i18n="concerns.cta">Start Registration</a>
+          <a class="btn btn-ghost" href="https://wa.me/97450149045" target="_blank" rel="noopener" data-i18n="concerns.ctaAlt">Book Free Trial</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRESS JOURNEY -->
+    <section class="section journey-section" id="journey">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title" data-i18n="journey.title">Your child’s progress journey</h2>
+          <p class="section-sub" data-i18n="journey.sub">
+            We don’t just train — we build habits and skills step by step, with age-based groups and clear milestones.
+          </p>
+        </div>
+
+        <div class="journey-grid">
+          <article class="journey-step reveal">
+            <div class="journey-month" data-i18n="journey.m1month">Month 1 — Foundation</div>
+            <p data-i18n="journey.m1text">Basic coordination, rules, and confidence in movement.</p>
+          </article>
+          <article class="journey-step reveal" style="transition-delay: 80ms;">
+            <div class="journey-month" data-i18n="journey.m3month">Month 3 — Team Interaction</div>
+            <p data-i18n="journey.m3text">Communication, teamwork, and discipline in sessions.</p>
+          </article>
+          <article class="journey-step reveal" style="transition-delay: 140ms;">
+            <div class="journey-month" data-i18n="journey.m6month">Month 6 — Skill Growth</div>
+            <p data-i18n="journey.m6text">Stronger technique, game awareness, and consistency.</p>
+          </article>
+          <article class="journey-step reveal" style="transition-delay: 200ms;">
+            <div class="journey-month" data-i18n="journey.m9month">Month 9 — Match Readiness</div>
+            <p data-i18n="journey.m9text">Better decisions, leadership, and competitive mindset.</p>
+          </article>
+        </div>
+
+        <div class="section-actions reveal" style="transition-delay: 240ms;">
+          <a class="btn btn-primary" href="#register" data-i18n="journey.cta">Start Registration</a>
+          <a class="btn btn-secondary" href="https://wa.me/97450149045" target="_blank" rel="noopener" data-i18n="journey.ctaAlt">Book Assessment</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESPONSE GUARANTEE -->
+    <section class="section response-guarantee-section" id="response-guarantee">
+      <div class="container">
+        <div class="response-guarantee reveal">
+          <strong class="response-guarantee-title" data-i18n="response.title">Response Time Guarantee</strong>
+          <p class="response-guarantee-text" data-i18n="response.text">We reply fast on WhatsApp — usually within 2 hours (during working hours).</p>
+        </div>
+      </div>
+    </section>
+
     <!-- REGISTER -->
     <section class="section section-soft" id="register">
       <div class="container">
         <div class="section-head reveal">
           <h2 class="section-title" data-i18n="register.title">Register</h2>
           <p class="section-sub" data-i18n="register.sub">
-            Fill in the form and we will contact you. Your details will be sent to our email and you can also send a copy via WhatsApp.
+            Quick booking form for football and basketball training.
           </p>
+          <p class="register-promise" data-i18n="register.promise">We reply fast on WhatsApp — usually within 2 hours (during working hours).</p>
         </div>
 
         <div class="form-card reveal">
@@ -363,43 +419,40 @@
             <input type="hidden" name="_captcha" value="false" />
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
+            <p class="required-note" data-i18n="form.requiredNote">Fields marked with * are required.</p>
+
             <div class="form-grid">
               <div class="field">
-                <label for="childName" data-i18n="form.name">Child name</label>
+                <label for="childName"><span data-i18n="form.name">Child name</span> <span class="req-star" aria-hidden="true">*</span></label>
                 <input id="childName" name="Child Name" type="text" autocomplete="name" required />
-                <div class="hint" data-i18n="form.req">Required</div>
               </div>
 
               <div class="field">
-                <label for="age" data-i18n="form.age">Age</label>
+                <label for="age"><span data-i18n="form.age">Age</span> <span class="req-star" aria-hidden="true">*</span></label>
                 <input id="age" name="Age" type="number" inputmode="numeric" min="3" max="18" required />
-                <div class="hint" data-i18n="form.req">Required</div>
               </div>
 
               <div class="field">
-                <label for="gender" data-i18n="form.gender">Gender</label>
-                <select id="gender" name="Gender" required>
-                  <option value="" selected disabled data-i18n="form.choose">Choose</option>
-                  <option value="Boy" data-i18n="form.boy">Boy</option>
-                  <option value="Girl" data-i18n="form.girl">Girl</option>
-                </select>
-                <div class="hint" data-i18n="form.req">Required</div>
-              </div>
-
-              <div class="field">
-                <label for="sport" data-i18n="form.sport">Sport</label>
+                <label for="sport"><span data-i18n="form.sport">Sport</span> <span class="req-star" aria-hidden="true">*</span></label>
                 <select id="sport" name="Sport" required>
                   <option value="" selected disabled data-i18n="form.choose">Choose</option>
                   <option value="Football" data-i18n="form.football">Football</option>
                   <option value="Basketball" data-i18n="form.basketball">Basketball</option>
                 </select>
-                <div class="hint" data-i18n="form.req">Required</div>
+              </div>
+
+              <div class="field">
+                <label for="gender"><span data-i18n="form.gender">Gender</span> <span class="req-star" aria-hidden="true">*</span></label>
+                <select id="gender" name="Gender" required>
+                  <option value="" selected disabled data-i18n="form.choose">Choose</option>
+                  <option value="Boy" data-i18n="form.boy">Boy</option>
+                  <option value="Girl" data-i18n="form.girl">Girl</option>
+                </select>
               </div>
 
               <div class="field field-full">
-                <label for="contact" data-i18n="form.contact">Phone / WhatsApp</label>
+                <label for="contact"><span data-i18n="form.contact">Phone / WhatsApp</span> <span class="req-star" aria-hidden="true">*</span></label>
                 <input id="contact" name="Contact Number" type="tel" inputmode="tel" placeholder="+974 ..." required />
-                <div class="hint" data-i18n="form.req">Required</div>
               </div>
 
               <div class="field field-full">
@@ -409,10 +462,17 @@
             </div>
 
             <div class="form-actions">
-              <button class="btn btn-primary" type="submit" id="submitBtn" data-i18n="form.submit">Submit</button>
-              <a class="btn btn-secondary hidden" id="waCopyBtn" target="_blank" rel="noopener" href="#" data-i18n="form.whatsappCopy">Send copy via WhatsApp</a>
+              <a class="btn btn-wa" id="waSendBtn" target="_blank" rel="noopener" href="#" data-i18n="form.sendWhatsApp">Send via WhatsApp</a>
+              <button class="btn btn-primary" type="submit" id="emailSubmitBtn">
+                <svg class="email-btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M22 8l-10 7L2 8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span data-i18n="form.sendEmail">Send via Email</span>
+              </button>
               <div class="form-status" id="formStatus" aria-live="polite"></div>
             </div>
+            <p class="form-trust" data-i18n="form.trust">No spam — we only use your number to contact you about training.</p>
 
           </form>
 
@@ -423,51 +483,85 @@
 
   </main>
 
-  <section class="cta-info reveal" aria-label="Academy quick info">
-    <div class="container cta-info-inner">
-      <div class="cta-info-brand">
-        <img class="cta-info-logo" src="assets/img/logo.jpg" alt="Creativity Sports Academy logo" loading="lazy" />
-        <h2 class="cta-info-title">Creativity Sports Academy</h2>
-        <p class="cta-info-sub" data-i18n="cta.sub">Professional football and basketball training for children.</p>
+  <section class="ready-start reveal" aria-label="Start now">
+    <div class="container ready-start-inner">
+      <div>
+        <p class="ready-kicker" data-i18n="ready.kicker">Ready to Start?</p>
+        <h2 class="ready-title" data-i18n="ready.title">Join the academy and build skill, confidence, and discipline.</h2>
       </div>
-
-      <div class="cta-info-list">
-        <a class="cta-item" href="https://maps.app.goo.gl/gkWpiiyaM3RdaEWF7" target="_blank" rel="noopener">
-          <span class="cta-item-ico">📍</span>
-          <span data-i18n="cta.location">Doha - Al Sadd</span>
-        </a>
-        <a class="cta-item cta-item-wa" href="https://wa.me/97450149045" target="_blank" rel="noopener">
-          <span class="cta-item-ico">📞</span>
-          <span data-i18n="cta.whatsapp">WhatsApp: +974 50149045</span>
-        </a>
-        <a class="cta-item" href="mailto:nasryahia474@gmail.com">
-          <span class="cta-item-ico">✉️</span>
-          <span data-i18n="cta.email">Email: nasryahia474@gmail.com</span>
-        </a>
-      </div>
-
-      <div class="cta-socials" aria-label="Social links">
-        <a class="cta-social cta-social-ig" href="https://www.instagram.com/creativity_sport_academy_qatar/?hl=ar" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.1a3.9 3.9 0 1 1 0 7.8 3.9 3.9 0 0 1 0-7.8zM12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm5.6-.9a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8z"/>
-          </svg>
-          <span>Instagram</span>
-        </a>
-        <a class="cta-social cta-social-fb" href="https://www.facebook.com/CREATIVITY.SPORTS.ACADEMY.QATAR.BASKETBALL.FOOTBAL" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M13.5 22v-8.5H16l.5-3h-3V8.6c0-.87.24-1.46 1.5-1.46H16.6V4.43c-.33-.04-1.46-.13-2.77-.13-2.74 0-4.62 1.67-4.62 4.74V10.5H6.5v3h2.71V22h4.29z"/>
-          </svg>
-          <span>Facebook</span>
-        </a>
-        <a class="cta-social cta-social-wa" href="https://wa.me/97450149045" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M19.05 4.95A9.93 9.93 0 0 0 12 2a10 10 0 0 0-8.66 14.99L2 22l5.16-1.35A10 10 0 1 0 19.05 4.95zm-7.06 15.37a8.27 8.27 0 0 1-4.22-1.16l-.3-.18-3.06.8.82-2.98-.2-.31a8.31 8.31 0 1 1 6.96 3.83zm4.56-6.22c-.25-.13-1.47-.72-1.7-.8-.23-.08-.4-.13-.57.13-.16.24-.65.8-.8.96-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.27.37-.4.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.13-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.02 2.6.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.52.6.19 1.14.16 1.57.1.48-.07 1.51-.62 1.72-1.21.21-.59.21-1.09.15-1.2-.07-.1-.23-.16-.48-.29z"/>
-          </svg>
-          <span>WhatsApp</span>
-        </a>
-      </div>
+      <a class="btn btn-primary ready-btn" href="#register" data-i18n="ready.btn">Book Now</a>
     </div>
   </section>
+
+  <div class="footer-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 110" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+      <path fill="#0f2a44" d="M0,78L48,74.7C96,71,192,63,288,52.3C384,42,480,28,576,31.3C672,35,768,57,864,66.7C960,76,1056,72,1152,61.7C1248,51,1344,35,1392,27.3L1440,20L1440,111L1392,111C1344,111,1248,111,1152,111C1056,111,960,111,864,111C768,111,672,111,576,111C480,111,384,111,288,111C192,111,96,111,48,111L0,111Z"></path>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container site-footer-grid">
+      <div class="footer-col footer-col-brand">
+        <div class="footer-brand">
+          <img class="footer-logo" src="assets/img/logo.jpg" alt="Creativity Sports Academy logo" loading="lazy" />
+          <div class="footer-name">Creativity Sports Academy</div>
+        </div>
+        <p class="footer-desc" data-i18n="footer.desc">Professional football and basketball training for children in Doha.</p>
+        <div class="footer-socials" aria-label="Social links">
+          <a class="footer-social footer-social-ig" href="https://www.instagram.com/creativity_sport_academy_qatar/?hl=ar" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.1a3.9 3.9 0 1 1 0 7.8 3.9 3.9 0 0 1 0-7.8zM12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm5.6-.9a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8z"/>
+            </svg>
+          </a>
+          <a class="footer-social footer-social-fb" href="https://www.facebook.com/CREATIVITY.SPORTS.ACADEMY.QATAR.BASKETBALL.FOOTBAL" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M13.5 22v-8.5H16l.5-3h-3V8.6c0-.87.24-1.46 1.5-1.46H16.6V4.43c-.33-.04-1.46-.13-2.77-.13-2.74 0-4.62 1.67-4.62 4.74V10.5H6.5v3h2.71V22h4.29z"/>
+            </svg>
+          </a>
+          <a class="footer-social footer-social-wa" href="https://wa.me/97450149045" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M19.05 4.95A9.93 9.93 0 0 0 12 2a10 10 0 0 0-8.66 14.99L2 22l5.16-1.35A10 10 0 1 0 19.05 4.95zm-7.06 15.37a8.27 8.27 0 0 1-4.22-1.16l-.3-.18-3.06.8.82-2.98-.2-.31a8.31 8.31 0 1 1 6.96 3.83zm4.56-6.22c-.25-.13-1.47-.72-1.7-.8-.23-.08-.4-.13-.57.13-.16.24-.65.8-.8.96-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.27.37-.4.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.13-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.02 2.6.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.52.6.19 1.14.16 1.57.1.48-.07 1.51-.62 1.72-1.21.21-.59.21-1.09.15-1.2-.07-.1-.23-.16-.48-.29z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading" data-i18n="footer.quick.title">Quick Links</h3>
+        <div class="footer-links-list">
+          <a href="#top" data-i18n="footer.quick.home">Home</a>
+          <a href="#about" data-i18n="footer.quick.about">About</a>
+          <a href="programs.html" data-i18n="footer.quick.programs">Programs</a>
+          <a href="girls-only.html" data-i18n="footer.quick.girls">Girls Only</a>
+          <a href="#register" data-i18n="footer.quick.register">Register</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading" data-i18n="footer.contact.title">Contact</h3>
+        <div class="footer-links-list">
+          <a href="https://maps.app.goo.gl/gkWpiiyaM3RdaEWF7" target="_blank" rel="noopener" data-i18n="footer.contact.location">Doha - Al Sadd</a>
+          <a href="https://wa.me/97450149045" target="_blank" rel="noopener" data-i18n="footer.contact.whatsapp">WhatsApp: +974 50149045</a>
+          <a href="mailto:nasryahia474@gmail.com" data-i18n="footer.contact.email">Email: nasryahia474@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading" data-i18n="footer.hours.title">Training Hours</h3>
+        <div class="footer-links-list footer-hours-list">
+          <div data-i18n="footer.hours.weekdays">Sun - Thu: 4:00 PM - 9:00 PM</div>
+          <div data-i18n="footer.hours.friday">Friday: 3:00 PM - 8:00 PM</div>
+          <div data-i18n="footer.hours.saturday">Saturday: 9:00 AM - 1:00 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-footer">
+      <div class="container sub-footer-inner">
+        <div data-i18n="footer.rights">© 2026 Creativity Sports Academy - All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
 
   <!-- Floating WhatsApp (always visible) -->
   <a class="wa-float" href="https://wa.me/97450149045" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -484,16 +578,5 @@
   </div>
 
   <script defer src="js/base.js"></script>
-  <script>
-    // load device-specific JS safely
-    (function(){
-      const isDesktop = window.matchMedia("(min-width: 992px)").matches;
-      const s = document.createElement("script");
-      s.src = isDesktop ? "js/desktop.js" : "js/mobile.js";
-      s.defer = true;
-      document.head.appendChild(s);
-    })();
-  </script>
 </body>
 </html>
-
