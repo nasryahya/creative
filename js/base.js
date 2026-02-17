@@ -138,8 +138,6 @@
       "journey.m9text":"Better decisions, leadership, and competitive mindset.",
       "journey.cta":"Start Registration",
       "journey.ctaAlt":"Book Assessment",
-      "response.title":"Response Time Guarantee",
-      "response.text":"We reply fast on WhatsApp — usually within 2 hours (during working hours).",
       "programs.page.title":"Detailed Programs",
       "programs.page.sub":"Explore our full football and basketball pathways, training focus, and development goals for children.",
       "programs.football.title":"Football Training",
@@ -183,7 +181,7 @@
       "programs.link2":"Contact us",
 
       "coaches.title":"Coaches",
-      "coaches.sub":"Placeholder profiles will be replaced with your official coaches once you provide names and details.",
+      "coaches.sub":"Our coaching team is highly professional and performs at the highest level.",
       "coaches.c1n":"Coach Adam",
       "coaches.c1r":"Football • Kids development",
       "coaches.c2n":"Coach Brian",
@@ -344,8 +342,6 @@
       "journey.m9text":"قرارات أفضل، قيادة أكبر، وعقلية تنافسية متزنة.",
       "journey.cta":"ابدأ التسجيل",
       "journey.ctaAlt":"احجز تقييم",
-      "response.title":"ضمان سرعة الرد",
-      "response.text":"نرد بسرعة على واتساب، غالباً خلال ساعتين (خلال أوقات العمل).",
       "programs.page.title":"البرامج التفصيلية",
       "programs.page.sub":"تعرّف على تفاصيل برامج كرة القدم وكرة السلة وأهداف التطوير لكل فئة عمرية.",
       "programs.football.title":"تدريب كرة القدم",
@@ -389,7 +385,7 @@
       "programs.link2":"تواصل معنا",
 
       "coaches.title":"المدربين",
-      "coaches.sub":"هذه أسماء افتراضية مؤقتاً وسيتم تحديثها عند تزويدنا بمعلومات المدربين الرسمية.",
+      "coaches.sub":"نمتلك فريقًا من المدربين المحترفين يعمل وفق أعلى المعايير.",
       "coaches.c1n":"المدرب آدم",
       "coaches.c1r":"كرة قدم • تطوير الأطفال",
       "coaches.c2n":"المدرب براين",
@@ -493,25 +489,31 @@
     try { localStorage.setItem("lang", lang); } catch {}
   };
 
-  const initialLang = (() => {
-    try {
-      const qs = new URLSearchParams(window.location.search);
-      const qLang = qs.get("lang");
-      if (qLang === "ar" || qLang === "en") return qLang;
-    } catch {}
-    try {
-      const saved = localStorage.getItem("lang");
-      if (saved === "ar" || saved === "en") return saved;
-    } catch {}
-    return "en"; // default per user request
-  })();
-  setLang(initialLang);
+  const pagePath = (window.location.pathname || "").toLowerCase();
+  const hasDedicatedPageI18n = /(?:^|\/)(programs|girls-only)\.html$/.test(pagePath);
 
-  if (langToggle) {
-    langToggle.addEventListener("click", () => {
-      const current = document.documentElement.lang || "en";
-      setLang(current === "en" ? "ar" : "en");
-    });
+  // programs.html and girls-only.html manage language switching with page-specific scripts.
+  if (!hasDedicatedPageI18n) {
+    const initialLang = (() => {
+      try {
+        const qs = new URLSearchParams(window.location.search);
+        const qLang = qs.get("lang");
+        if (qLang === "ar" || qLang === "en") return qLang;
+      } catch {}
+      try {
+        const saved = localStorage.getItem("lang");
+        if (saved === "ar" || saved === "en") return saved;
+      } catch {}
+      return "en"; // default per user request
+    })();
+    setLang(initialLang);
+
+    if (langToggle) {
+      langToggle.addEventListener("click", () => {
+        const current = document.documentElement.lang || "en";
+        setLang(current === "en" ? "ar" : "en");
+      });
+    }
   }
 
   // ------- Header scroll state (glass -> solid) -------

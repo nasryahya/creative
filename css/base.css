@@ -2363,6 +2363,19 @@ body.page-inner .top-social{ color:#fff; } /* icons keep their own bg */
   color:#243244;
   font-weight:600;
 }
+.page-inner .site-footer .footer-name,
+.page-inner .site-footer .footer-heading{
+  color:#ffffff;
+}
+.page-inner .site-footer .footer-desc,
+.page-inner .site-footer .footer-links-list a,
+.page-inner .site-footer .footer-hours-list div,
+.page-inner .site-footer .sub-footer-inner{
+  color:rgba(225,240,255,.86);
+}
+.page-inner .site-footer .footer-links-list a:hover{
+  color:#ffffff;
+}
 .page-inner .hero-text,
 .page-inner .hero-sub{
   color:#1f2a3a;
@@ -2801,41 +2814,105 @@ html[dir="rtl"] .concerns-list li::before{
   font-weight: 600;
 }
 
-.response-guarantee-section{
-  padding-top: 8px;
-  padding-bottom: 24px;
-}
-
-.response-guarantee{
-  padding: 16px 18px;
-  border-radius: 16px;
-  border: 1px solid rgba(15,23,42,.10);
-  background: linear-gradient(135deg, rgba(16,58,91,.96), rgba(31,106,163,.90));
-  color: #f8fcff;
-  box-shadow: 0 14px 34px rgba(15,23,42,.16);
-}
-
-.response-guarantee-title{
-  display: block;
-  margin-bottom: 4px;
-  font-size: var(--step-0);
-  letter-spacing: .2px;
-}
-
-.response-guarantee-text{
-  margin: 0;
-  color: rgba(244,250,255,.92);
-  font-size: var(--step--1);
-  font-weight: 650;
-}
-
 @media (max-width: 991.98px){
   .concerns-grid,
   .journey-grid{
     grid-template-columns: 1fr;
   }
+}
 
-  .response-guarantee-section{
-    padding-top: 0;
+/* Header action chips: unified Register / Lang / Social style */
+@media (min-width: 992px){
+  .site-header .nav-actions{
+    margin-left: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  .site-header .nav-actions .nav-link{
+    height: 44px !important;
+    padding: 0 16px !important;
+    border-radius: 999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    background: rgba(255,255,255,.14) !important;
+    border: 1px solid rgba(255,255,255,.34) !important;
+    box-shadow: 0 10px 24px rgba(8,30,52,.22) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  .site-header .lang-toggle{
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255,255,255,.88) !important;
+    border: 1px solid rgba(255,255,255,.56) !important;
+    box-shadow: 0 10px 24px rgba(8,30,52,.18) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  .site-header .lang-pill{
+    line-height: 1 !important;
+    font-size: .92rem !important;
+    font-weight: 900 !important;
+    color: #102a42 !important;
+  }
+
+  .site-header .top-socials{
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 6px !important;
+    margin-left: 10px !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,.14) !important;
+    border: 1px solid rgba(255,255,255,.28) !important;
+    box-shadow: 0 10px 30px rgba(15,23,42,.16) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  .site-header .top-social{
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255,255,255,.24) !important;
+    box-shadow: 0 10px 24px rgba(15,23,42,.22) !important;
+  }
+
+  .site-header .top-social .ico,
+  .site-header .top-social-wa .ico{
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .site-header .top-social-fb{
+    background: radial-gradient(circle at 30% 30%, #5aa7ff, #0b4dbf) !important;
+  }
+
+  .site-header .top-social-ig{
+    background: radial-gradient(circle at 30% 30%, #ffd36a, #ff2bd6, #6b4bff) !important;
+  }
+
+  .site-header .top-social-wa{
+    background: radial-gradient(circle at 30% 30%, #78ffa7, #0aa84f) !important;
+    box-shadow: 0 10px 24px rgba(10,168,79,.34) !important;
+  }
+
+  .site-header .nav-actions .nav-link:hover,
+  .site-header .lang-toggle:hover,
+  .site-header .top-social:hover{
+    transform: translateY(-1px) scale(1.03) !important;
+    box-shadow: 0 12px 28px rgba(15,23,42,.2) !important;
   }
 }
